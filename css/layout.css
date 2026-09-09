@@ -1,0 +1,521 @@
+/* =========================
+   App layout
+   ========================= */
+
+  .grid-container {
+    display: grid;
+  
+    grid-template-columns:
+      var(--leftbar-open)
+      minmax(0, 1fr)
+      var(--rightbar-open);
+  
+    grid-template-rows: 84px 42px 1fr;
+  
+    height: 100vh;
+  
+    transition: grid-template-columns 0.22s ease;
+
+      position: relative;
+
+  /*
+    Все основные части интерфейса
+    сравнивают z-index внутри одного слоя.
+  */
+  isolation: isolate;
+  }
+  
+  .leftbar {
+    grid-column: 1;
+    grid-row: 1 / 4;
+  
+    width: auto;
+    min-width: 0;
+  
+    border-right: 1px solid #989898;
+  
+    padding: 31px;
+    box-sizing: border-box;
+  
+   
+    position: relative;
+  z-index: 200;
+  background-color: white;
+  }
+  
+  .main {
+    grid-column: 2;
+    grid-row: 3;
+  
+    min-width: 0;
+    min-height: 0;
+  
+    padding-top: 42px;
+    padding-left: 63px;
+    padding-right: 63px;
+  
+    box-sizing: border-box;
+  
+    position: relative;
+    overflow: auto;
+  }
+  
+.sidebar {
+  grid-column: 3;
+  grid-row: 1 / 4;
+
+  width: auto;
+  min-width: 0;
+  min-height: 0;
+
+  height: 100%;
+
+  border-left: 1px solid #989898;
+
+  box-sizing: border-box;
+
+  position: relative;
+  z-index: 2;
+
+  background: #fff;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+  .hotkeys-panel-header {
+
+  flex: 0 0 auto;
+
+  padding-top: 75px;
+  padding-left: 31px;
+  padding-right: 31px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #d5d5d5;
+
+
+  z-index: 2;
+
+}
+
+.hotkeys-panel-scroll {
+
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: auto;
+
+  padding-left: 31px;
+  padding-right: 31px;
+
+}
+
+.hotkeys-panel-footer {
+
+  flex: 0 0 auto;
+
+  padding-left: 31px;
+  padding-right: 31px;
+
+  padding-top: 10px;
+
+
+  background: white;
+
+  border-top: 1px solid #d5d5d5;
+
+  z-index: 2;
+
+}
+
+.hotkeys-panel-scroll .hotkeys-section {
+
+  width: max-content;
+
+}
+
+  
+  .tree-scroll {
+    width: 100%;
+    height: auto;
+  
+    min-width: 0;
+    min-height: 0;
+
+    overflow: visible;
+  }
+
+
+
+  /* =========================
+   Projects sidebar
+   ========================= */
+
+.projects-title {
+    margin-bottom: 31px;
+    color: #8d8d8d;
+    line-height: 1.1;
+  }
+  
+  body.left-collapsed .projects-title {
+    visibility: hidden;
+  }
+  
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2px;
+    gap: 2px;
+  }
+  
+  .project-item {
+    border: none;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+  
+    padding: 5px 30px 5px 10px;
+  
+    width: 100%;
+    display: block;
+  
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .project-item:hover {
+    background: var(--hover-color);
+  }
+  
+  .in-act {
+    background-color: #eee;
+    font-weight: bold;
+  }
+  
+  .project-item:active {
+    background: var(--active-color);
+  }
+  
+  .project-add {
+    border: none;
+    font: inherit;
+    background: transparent;
+  
+    padding-left: 10px;
+    padding-right: 30px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+  
+    color: #8d8d8d;
+    cursor: pointer;
+    font-family: inherit;
+  
+    width: 100%;
+    text-align: left;
+  
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  
+    display: block;
+  }
+  
+  .project-add:hover {
+    background: var(--hover-color);
+  }
+  
+  .project-add:active {
+    background: var(--active-color);
+  }
+
+
+  /* =========================
+   Object focus breadcrumbs
+   ========================= */
+
+.object-breadcrumbs {
+    grid-column: 2;
+    grid-row: 2;
+  
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  
+    height: 26px;
+  
+    padding-left: 63px;
+    padding-right: 63px;
+  
+    box-sizing: border-box;
+  
+    border-bottom: 1px solid #989898;
+    
+  
+    background: #fff;
+  
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1;
+    color: #7a7a7a;
+  }
+  
+  .object-breadcrumb-item {
+    border: none;
+    background: transparent;
+  
+    padding: 3px 4px;
+    margin: 0;
+  
+    border-radius: 4px;
+  
+    font: inherit;
+    font-size: 12px;
+    line-height: 1;
+  
+    color: #494949;
+  
+    cursor: pointer;
+  
+    transition:
+      background-color .12s ease,
+      color .12s ease;
+  }
+  
+  .object-breadcrumb-item:hover {
+    background: #e5e5e5;
+    
+    text-decoration: none;
+  }
+  
+  .object-breadcrumb-item:active {
+    background: #cecece;
+  }
+  
+  .object-breadcrumb-separator {
+    color: #494949;
+    font-size: 11px;
+  }
+
+
+  /* =========================
+   Collapsible side panels
+   ========================= */
+
+/* Left collapsed */
+
+body.left-collapsed .grid-container {
+    grid-template-columns:
+      var(--leftbar-collapsed)
+      minmax(0, 1fr)
+      var(--rightbar-open);
+  }
+  
+  body.left-collapsed .leftbar {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  body.left-collapsed .leftbar > *:not(.toggle-left) {
+    pointer-events: none;
+  }
+  
+  /* Right collapsed */
+  
+  body.right-collapsed .grid-container {
+    grid-template-columns:
+      var(--leftbar-open)
+      minmax(0, 1fr)
+      var(--rightbar-collapsed);
+  }
+  
+  body.right-collapsed .sidebar {
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+  }
+  
+  body.right-collapsed .sidebar > *:not(.toggle-right) {
+    visibility: hidden;
+    pointer-events: none;
+  }
+  
+  /* Both collapsed */
+  
+  body.left-collapsed.right-collapsed .grid-container {
+    grid-template-columns:
+      var(--leftbar-collapsed)
+      minmax(0, 1fr)
+      var(--rightbar-collapsed);
+  }
+
+  /* =========================
+   Panel toggle buttons
+   ========================= */
+
+.toggle-left,
+.toggle-right {
+  position: absolute;
+  z-index: 10;
+
+  width: 22px;
+  height: 21px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 4px;
+
+  background: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* icon inside button */
+
+.iconsize {
+  width: 14px;
+  height: 14px;
+
+  object-fit: contain;
+  display: block;
+}
+
+/* hover */
+
+.toggle-left:hover,
+.toggle-right:hover {
+  background: var(--hover-color);
+}
+
+/* active */
+
+.toggle-left:active,
+.toggle-right:active {
+  background: #dcdcdc;
+}
+
+/* positioning */
+
+.toggle-left {
+  top: 31px;
+  right: 25px;
+}
+
+.toggle-right {
+  top: 31px;
+  left: 25px;
+}
+
+/* =========================================================
+   Цельная строка проекта
+========================================================= */
+
+.project-row {
+  display: flex;
+  align-items: stretch;
+
+  width: 100%;
+  gap: 0;
+
+  background: transparent;
+}
+
+/* Активный проект */
+
+.project-row.in-act {
+  background: #eee;
+  font-weight: bold;
+}
+
+/* Наведение на любую часть строки */
+
+.project-row:hover {
+  background: var(--hover-color);
+}
+
+.project-row:active {
+  background: var(--active-color);
+}
+
+/* Название проекта */
+
+.project-row .project-item {
+  flex: 1 1 auto;
+
+  width: auto;
+  min-width: 0;
+
+  padding-right: 8px;
+
+  background: transparent !important;
+}
+
+/*
+  Отдельный фон самого названия убираем:
+  цветом управляет вся строка.
+*/
+
+.project-row .project-item:hover,
+.project-row .project-item:active,
+.project-row .project-item.in-act {
+  background: transparent !important;
+}
+
+/* Крестик удаления */
+
+.project-delete-btn {
+  flex: 0 0 30px;
+  align-self: stretch;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: auto;
+
+  padding: 0;
+  border: 0;
+
+  background: transparent;
+
+  color: #6b7280;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+  opacity: 0;
+}
+
+/* Показываем крестик при наведении на всю строку */
+
+.project-row:hover
+.project-delete-btn,
+.project-delete-btn:focus-visible {
+  opacity: 1;
+}
+
+.project-delete-btn:hover {
+  color: #000;
+  background: transparent;
+}
+
+.project-row:hover .project-delete-btn {
+  opacity: 1;
+}
+
+.project-delete-btn:hover {
+  color: #000;
+}

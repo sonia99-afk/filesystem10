@@ -1,0 +1,838 @@
+/* css/features/view_settings.css */
+
+/* =========================================================
+   Правая группа кнопок строки видов
+========================================================= */
+
+
+
+/*
+  Sticky теперь находится у общей группы,
+  поэтому сама кнопка + Вид снова relative.
+*/
+
+
+/* =========================================================
+   Кнопка «Настроить вид»
+========================================================= */
+
+
+.view-settings-open-btn {
+  flex: 0 0 auto;
+  align-self: center;
+
+  margin-left: 8px;
+
+  position: relative;
+  z-index: 2;
+}
+
+
+
+.view-settings-open-icon {
+  
+  line-height: 1;
+}
+
+/* =========================================================
+   Правая панель
+========================================================= */
+
+.view-settings-panel {
+  position: fixed;
+
+  top: 124px;
+  right: 0;
+  bottom: 0;
+
+  width: 380px;
+  max-width: calc(100vw - 24px);
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  border-left: 1px solid #d5d5d5;
+
+  background: #fff;
+
+  box-shadow:
+    -10px 0 28px
+    rgba(0, 0, 0, 0.08);
+
+   z-index: 100;
+
+  transform: translateX(100%);
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    transform 180ms ease,
+    visibility 180ms ease;
+}
+
+.view-settings-panel.is-open {
+  transform: translateX(0);
+
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* =========================================================
+   Шапка панели
+========================================================= */
+
+.view-settings-header {
+  min-height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 12px;
+
+  border-bottom: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
+
+  box-sizing: border-box;
+}
+
+.view-settings-title {
+  
+  font-weight: 700;
+  color: #111;
+}
+
+
+
+/* =========================================================
+   Содержимое панели
+========================================================= */
+
+.view-settings-body {
+  flex: 1 1 auto;
+  min-height: 0;
+
+  padding: 12px;
+
+  overflow-y: auto;
+
+  box-sizing: border-box;
+}
+
+.view-settings-select-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  margin-bottom: 18px;
+}
+
+.view-settings-select-label {
+  
+  font-weight: 700;
+  color: #777;
+}
+
+.view-settings-view-select {
+  width: 100%;
+  height: 32px;
+
+  padding: 0 8px;
+
+  border: 1px solid #cfcfcf;
+  border-radius: 5px;
+
+  background: #fff;
+  color: #222;
+
+  font: inherit;
+  
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   Разделы
+========================================================= */
+
+.view-settings-section {
+  margin-bottom: 22px;
+}
+
+.view-settings-section-header {
+  min-height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.view-settings-section-title {
+  
+  font-weight: 700;
+  color: #222;
+}
+
+.view-settings-section-count {
+  min-width: 18px;
+
+  color: #777;
+
+ 
+  text-align: right;
+}
+
+/* =========================================================
+   Одна строка настройки
+========================================================= */
+
+.view-settings-control-row {
+  position: relative;
+
+  min-height: 38px;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+  gap: 10px;
+
+  margin: 0;
+  padding: 0 2px;
+
+  box-sizing: border-box;
+}
+
+.view-settings-control-name {
+  min-width: 0;
+
+  color: #333;
+
+
+  line-height: 1.2;
+}
+
+.view-settings-control-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.view-settings-gear {
+  width: 25px;
+  min-width: 25px;
+  height: 25px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  margin: 0;
+
+  border: 0;
+  border-radius: 4px;
+
+  background-color: transparent;
+  color: #777;
+
+  line-height: 1;
+  box-sizing: border-box;
+  vertical-align: middle;
+
+  cursor: pointer;
+}
+
+.view-settings-gear.icon-settings {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.view-settings-gear:hover:not(:disabled) {
+  background: #eee;
+  color: #111;
+}
+
+.view-settings-gear:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* =========================================================
+   Перенесённые старые контейнеры
+========================================================= */
+
+.view-settings-panel .mark-tools,
+.view-settings-panel .level-headers-tools {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0 2px;
+
+  box-sizing: border-box;
+}
+
+/*
+  Старые меню раньше открывались вправо.
+  В правой панели они должны открываться влево,
+  иначе выйдут за экран.
+*/
+
+.view-settings-panel .mark-settings-menu,
+.view-settings-panel .level-headers-settings-menu {
+  left: auto;
+  right: 34px;
+  top: 30px;
+}
+
+/* =========================================================
+   Узкий экран
+========================================================= */
+
+@media (max-width: 700px) {
+  .view-settings-open-btn span:last-child {
+    display: none;
+  }
+
+  .view-settings-open-btn {
+    min-width: 38px;
+    padding: 0 8px;
+  }
+
+  .view-settings-panel {
+    top: 124px;
+    width: min(300px, 92vw);
+  }
+}
+
+/* =========================================================
+   Полный список свойств
+========================================================= */
+
+.view-settings-generated-list {
+  display: contents;
+}
+
+.view-settings-control-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 0;
+}
+
+.view-settings-property-icon {
+  width: 22px;
+  min-width: 22px;
+  height: 22px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #777;
+
+
+
+  user-select: none;
+}
+
+.view-settings-control-row.is-unavailable
+.view-settings-control-name,
+.view-settings-control-row.is-unavailable
+.view-settings-property-icon {
+  color: #aaa;
+}
+
+.view-settings-control-row.is-unavailable {
+  cursor: default;
+}
+
+
+
+/* =========================================================
+   Вкладки управления свойствами
+========================================================= */
+
+.view-settings-property-manager {
+  min-width: 0;
+}
+
+.view-settings-property-tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+
+  margin: 0 0 14px;
+  padding: 0;
+
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.view-settings-property-tab {
+  position: relative;
+
+  min-height: 36px;
+
+  padding: 0 6px;
+
+  border: 0;
+
+  background: transparent;
+  color: #777;
+
+  font: inherit;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.view-settings-property-tab:hover {
+  color: #222;
+}
+
+.view-settings-property-tab.is-active {
+  color: #111;
+  font-weight: 700;
+}
+
+.view-settings-property-tab.is-active::after {
+  content: "";
+
+  position: absolute;
+
+  right: 0;
+  bottom: -1px;
+  left: 0;
+
+  height: 3px;
+
+  background: #111;
+}
+
+.view-settings-property-tab-panel[hidden] {
+  display: none !important;
+}
+
+
+/* =========================================================
+   Группы свойств
+========================================================= */
+
+.view-settings-property-group {
+  margin: 0 0 18px;
+}
+
+.view-settings-property-group-header {
+  min-height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 3px;
+
+  color: #777;
+}
+
+.view-settings-property-group-title {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.view-settings-property-group-count {
+  min-width: 20px;
+
+  font-size: 12px;
+  text-align: right;
+}
+
+.view-settings-property-group-list {
+  min-width: 0;
+}
+
+.view-settings-property-group-empty {
+  min-height: 34px;
+
+  display: flex;
+  align-items: center;
+
+  color: #aaa;
+
+  font-size: 12px;
+}
+
+.view-settings-property-group-empty[hidden] {
+  display: none !important;
+}
+
+
+/* =========================================================
+   Строки в новых группах
+========================================================= */
+
+.view-settings-property-manager
+.view-settings-control-row {
+  width: 100%;
+
+  border-radius: 5px;
+}
+
+.view-settings-property-manager
+.view-settings-control-row:hover {
+  background: #f5f5f5;
+}
+
+.view-settings-property-manager
+.is-unavailable-group
+.view-settings-control-row {
+  opacity: 0.58;
+}
+
+.view-settings-property-manager
+.is-unavailable-group
+.view-settings-control-row:hover {
+  background: transparent;
+}
+
+
+/* =========================================================
+   Вкладка «Создать»
+========================================================= */
+
+.view-settings-create-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.view-settings-create-row {
+  min-height: 40px;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+  gap: 10px;
+
+  padding: 0 2px;
+
+  border-radius: 5px;
+
+  box-sizing: border-box;
+}
+
+.view-settings-create-row:hover {
+  background: #f5f5f5;
+}
+
+.view-settings-create-button {
+  min-height: 28px;
+
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.view-settings-property-empty-state {
+  min-height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 16px;
+
+  color: #999;
+
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+
+  box-sizing: border-box;
+}
+
+.view-settings-property-empty-state[hidden] {
+  display: none !important;
+}
+
+
+/* =========================================================
+   Скрытое хранилище строк
+========================================================= */
+
+.view-settings-property-parking {
+  display: none !important;
+}
+
+
+
+/* =========================================================
+   Вкладка «Создать»
+========================================================= */
+
+.view-settings-create-group {
+  margin: 0;
+}
+
+.view-settings-create-group.is-spaced {
+  margin-top: 18px;
+}
+
+.view-settings-create-group-title {
+  margin: 4px 0 8px;
+
+  color: #777;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.view-settings-create-row {
+  min-height: 42px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding:
+    6px 8px
+    6px 2px;
+
+  box-sizing:
+    border-box;
+
+  border-radius:
+    8px;
+}
+
+.view-settings-create-row:hover {
+  background:
+    #f3f3f3;
+}
+
+
+/*
+  Как в прототипе:
+  кнопка появляется только
+  при наведении.
+*/
+
+.view-settings-create-button {
+  min-height: 26px;
+  padding: 0 9px;
+
+  /*
+    Любое состояние кнопки скрыто,
+    пока пользователь не навёлся
+    на строку свойства.
+  */
+  opacity: 0;
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.12s ease,
+    visibility 0.12s ease;
+}
+
+
+/*
+  Показываем кнопку только
+  при наведении на строку.
+*/
+
+.view-settings-create-row:hover
+.view-settings-create-button {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/*
+  Активные кнопки можно нажимать.
+*/
+
+.view-settings-create-row:hover
+.view-settings-create-button:not(:disabled) {
+  pointer-events: auto;
+}
+
+
+/*
+  "Добавлено" видно при hover,
+  но нажать на него нельзя.
+*/
+
+.view-settings-create-button:disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.view-settings-create-row:hover
+.view-settings-create-button,
+
+.view-settings-create-button:focus-visible {
+  opacity: 1;
+
+  pointer-events:
+    auto;
+}
+
+.view-settings-create-button:disabled {
+  cursor: default;
+
+  color: #777;
+}
+
+
+/* =========================================================
+   Настройки интерфейса вида
+========================================================= */
+
+.view-settings-dynamic-interface {
+  display: flex;
+  flex-direction: column;
+}
+
+.view-settings-interface-row {
+  position: relative;
+}
+
+.view-settings-interface-row
+.view-settings-control-name {
+  max-width: 255px;
+  line-height: 1.35;
+}
+
+/* =========================================================
+   Меню шестерёнки
+========================================================= */
+
+.view-settings-interface-menu {
+  position: absolute;
+
+  top: 31px;
+  right: 34px;
+
+  z-index: 30;
+}
+
+.view-settings-interface-menu[hidden] {
+  display: none !important;
+}
+
+
+
+/* =========================================================
+   Радиокнопка внутри меню
+========================================================= */
+
+.view-settings-interface-radio {
+  width: 14px;
+  height: 14px;
+
+  flex: 0 0 14px;
+
+  position: relative;
+
+  border: 1px solid #aaa;
+  border-radius: 50%;
+
+  box-sizing: border-box;
+}
+
+.view-settings-interface-radio.is-selected::after {
+  content: "";
+
+  position: absolute;
+
+  top: 3px;
+  right: 3px;
+  bottom: 3px;
+  left: 3px;
+
+  border-radius: 50%;
+
+  background: #777;
+}
+
+/* =========================================================
+   Иконки вариантов выравнивания
+========================================================= */
+
+.view-settings-interface-menu-icon {
+  display: block;
+
+  width: 14px;
+  min-width: 14px;
+  height: 14px;
+
+  flex: 0 0 14px;
+
+  object-fit: contain;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/*
+  В пунктах с иконками радиоиндикатор
+  располагается у правого края.
+*/
+.view-settings-interface-menu-option
+.view-settings-interface-menu-icon
+~ .ui-dropdown-radio {
+  margin-left: auto;
+}
+
+/* =========================================================
+   Выравнивание шестерёнки
+========================================================= */
+
+/*
+  У строки «Выравнивание текста» нет тумблера.
+
+  Создаём справа пустое место размером
+  с обычный тумблер, поэтому шестерёнка
+  встаёт точно под остальные шестерёнки.
+*/
+.view-settings-interface-row-no-toggle
+.view-settings-control-actions::after {
+  content: "";
+
+  display: block;
+
+  width: 44px;
+  min-width: 44px;
+  height: 20px;
+
+  flex: 0 0 44px;
+
+  pointer-events: none;
+}

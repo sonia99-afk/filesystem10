@@ -1,0 +1,458 @@
+/* =========================================================
+   Вид «Структура + Таблица»
+
+   Структура — обычная колонка таблицы.
+========================================================= */
+
+#tree .structure-table-combined-view {
+  position: relative;
+  display: block;
+
+  width: max-content;
+  min-width: 100%;
+
+  padding-right: 63px;
+  box-sizing: border-box;
+
+  background: #fff;
+}
+
+/*
+  Единое дерево находится поверх пустых
+  td только в границах колонки структуры.
+*/
+#tree .structure-table-schema-pane {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 40;
+
+  width: 320px;
+  min-width: 0;
+
+  border: 0;
+  box-sizing: border-box;
+  background: transparent;
+  isolation: isolate;
+
+  pointer-events: none;
+}
+
+#tree .structure-table-schema-header {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 22px;
+  padding: 0 8px;
+
+  border: 0;
+  box-sizing: border-box;
+
+  background: transparent;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/*
+  Начальная ширина структуры до создания
+  общего colgroup таблицы.
+*/
+#tree
+.structure-table:not(.table-column-widths-active)
+.structure-table-structure-header-cell {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+}
+
+/*
+  После создания colgroup ширину задаёт
+  стандартный resize-модуль таблицы.
+*/
+#tree
+.structure-table.table-column-widths-active
+.structure-table-structure-header-cell {
+  width: auto;
+  min-width: 0;
+}
+
+#tree .structure-table-schema-body {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+  padding-right: 18px;
+
+  border-left: 1px solid #cfcfcf;
+  border-right: 1px solid #cfcfcf;
+  box-sizing: border-box;
+
+  background: #fff;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+#tree
+.structure-table-schema-body
+> ul[data-level] {
+  min-width: max-content;
+}
+
+#tree .structure-table-row-spacer {
+  display: block;
+  width: 1px;
+  height: 0;
+
+  pointer-events: none;
+}
+
+#tree .structure-table-table-pane {
+  position: relative;
+  min-width: 0;
+}
+
+#tree
+.structure-table-table-pane
+> .table-view {
+  display: inline-block;
+
+  min-width: 0;
+  padding-right: 0;
+}
+
+#tree
+.structure-table-table-pane
+.structure-table
+tbody > tr {
+  box-sizing: border-box;
+}
+
+/*
+  Пустая ячейка хранит ширину и положение
+  структуры в настоящей таблице.
+*/
+#tree .structure-table-structure-cell {
+  background: #fff;
+  pointer-events: none;
+}
+
+/*
+  Старая маска sticky-панели больше
+  не используется.
+*/
+body.view-structure-table
+#tree
+.structure-table-integrated-columns
+.structure-table-schema-pane::before {
+  display: none;
+  content: none;
+}
+
+body.view-structure-table
+#tree .collapse-col {
+  left: -55px;
+}
+
+body.view-structure-table
+#tree .level-collapse-bar {
+  position: absolute;
+  left: 0;
+  top: -32px;
+}
+
+/*
+  Верхние кнопки находятся внутри
+  перемещаемой колонки структуры.
+*/
+body.view-structure-table
+#tree
+.structure-table-schema-pane
+> .level-collapse-bar {
+  position: absolute;
+  top: -52px;
+  left: 0;
+
+  width: max-content;
+  z-index: 45;
+  pointer-events: auto;
+}
+
+body.view-structure-table
+#tree
+.structure-table-schema-pane
+> .level-hide-bar {
+  position: absolute;
+  top: -32px;
+  left: 0;
+
+  width: max-content;
+  z-index: 45;
+  pointer-events: auto;
+}
+
+/*
+  Боковые кнопки также перемещаются
+  вместе со структурой.
+*/
+body.view-structure-table
+#tree
+.structure-table-schema-pane
+> .collapse-col,
+
+body.view-structure-table
+#tree
+.structure-table-schema-pane
+> .object-hide-col {
+  position: absolute;
+
+  height: 20px;
+  min-height: 20px;
+
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  line-height: 20px;
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+body.view-structure-table
+#tree
+.structure-table-table-pane
+.structure-table
+tbody > tr.structure-table-active-row
+> td {
+  background: #eaeaea;
+}
+
+/* =========================================================
+   Заголовки уровней
+========================================================= */
+
+#tree
+.structure-table-schema-header.has-level-headers {
+  padding: 0;
+  align-items: stretch;
+  font-weight: 400;
+}
+
+#tree
+.structure-table-schema-header
+> .level-headers-row-schema,
+
+#tree
+.structure-table-schema-header
+> .level-headers-cascade-schema {
+  flex: 1 0 auto;
+
+  min-width: 100%;
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+#tree
+.structure-table-schema-body
+> .schema-with-level-column {
+  min-width: max-content;
+  gap: 16px;
+}
+
+#tree
+.structure-table-schema-body
+.level-headers-column-stack {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#tree
+.structure-table-schema-body
+.level-headers-column-cascade
+.level-header-mini-li::before,
+
+#tree
+.structure-table-schema-body
+.level-headers-column-cascade
+.level-header-anchor {
+  top:
+    var(
+      --structure-table-level-row-center,
+      9px
+    );
+}
+
+/* =========================================================
+   Вынесенные верхние заголовки уровней
+========================================================= */
+
+/*
+  Обычный заголовок «Структура» закрывает
+  настоящий пустой th, но не мешает resize
+  и перетаскиванию столбца.
+*/
+#tree .structure-table-schema-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 50;
+
+  width: 100%;
+  min-width: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/*
+  Названия уровней остаются кликабельными
+  и доступными для переименования.
+*/
+#tree
+.structure-table-schema-header
+.level-header-item,
+
+#tree
+.structure-table-schema-header
+.level-header-mini-item,
+
+#tree
+.structure-table-schema-header
+.level-header-edit {
+  pointer-events: auto;
+}
+
+/*
+  Отдельная строка перед таблицей.
+  Она занимает место в обычном потоке,
+  поэтому заголовки не накладываются
+  на таблицу.
+*/
+#tree .structure-table-level-header-rail {
+  position: relative;
+
+  width: 100%;
+  min-width: 100%;
+
+  margin: 0;
+  padding: 0 0 8px;
+
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+#tree
+.structure-table-level-header-rail
+> .structure-table-schema-header {
+  position: relative;
+  left: 0;
+  top: 0;
+
+  width: 320px;
+  height: auto;
+  margin: 0;
+}
+
+/*
+  Верхний каскад тоже учитывает
+  внутреннюю область боковых кнопок.
+*/
+#tree
+.structure-table-level-header-rail
+.level-headers-cascade-schema {
+  padding-left: 64px;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   Внутренняя область боковых кнопок
+========================================================= */
+
+/*
+  Первые 64px структурного столбца
+  резервируются под три боковые кнопки.
+*/
+#tree .structure-table-schema-body {
+  padding-left: 64px;
+}
+
+/*
+  Сворачивание — первая позиция.
+*/
+body.view-structure-table
+#tree
+.structure-table-schema-pane
+> .collapse-col {
+  left: 40px !important;
+}
+
+/*
+  Обычная кнопка скрытия —
+  вторая позиция.
+*/
+body.view-structure-table
+#tree
+.structure-table-schema-pane
+> .object-hide-col:not(.is-hidden-object) {
+  left: 20px !important;
+}
+
+/*
+  Кнопка скрытого объекта —
+  третья позиция.
+*/
+body.view-structure-table
+#tree
+.structure-table-schema-pane
+> .object-hide-col.is-hidden-object {
+  left: 30px !important;
+}
+
+/*
+  Верхние панели располагаются выше
+  вынесенных заголовков и не перекрывают их.
+*/
+body.view-structure-table
+#tree
+.structure-table-has-top-level-headers
+> .structure-table-schema-pane
+> .level-collapse-bar {
+  top:
+    calc(
+      -52px -
+      var(
+        --structure-table-top-headers-height,
+        0px
+      )
+    );
+}
+
+body.view-structure-table
+#tree
+.structure-table-has-top-level-headers
+> .structure-table-schema-pane
+> .level-hide-bar {
+  top:
+    calc(
+      -32px -
+      var(
+        --structure-table-top-headers-height,
+        0px
+      )
+    );
+}
+
+/*
+  Ручка изменения ширины остаётся
+  доступной поверх визуального слоя.
+*/
+body.view-structure-table
+#tree
+.structure-table-structure-header-cell
+> .table-column-resize-handle {
+  z-index: 60;
+}

@@ -1,0 +1,316 @@
+/* =========================
+   Color tools
+   ========================= */
+
+   .color-tools {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 21px;
+    margin-right: 21px;
+  }
+  
+  .color-group {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 21px;
+    width: 21px;
+  }
+  
+  .color-main-btn {
+    width: 21px;
+    height: 21px;
+    padding: 0;
+    margin: 0;
+  
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .color-main-btn:hover {
+    background: #e6e6e6;
+  }
+  
+  .color-main-btn:active {
+    background: #dcdcdc;
+  }
+  
+  .color-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 100%;
+    height: 100%;
+  
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1;
+    color: #444;
+  
+    user-select: none;
+  }
+  
+  .color-icon-text,
+  .color-icon-bg {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    width: 18px;
+    height: 18px;
+  }
+  
+  .color-icon-bg {
+    font-size: 13px;
+  }
+  
+  .color-icon-bg-img {
+    width: 11px;
+    height: 11px;
+    object-fit: contain;
+    display: block;
+  
+    filter: grayscale(1) brightness(0.4);
+  }
+
+  /* =========================
+   Color swatches
+   ========================= */
+
+.color-swatches {
+    position: absolute;
+    top: calc(100% - 9px);
+    left: 14px;
+    z-index: 1000;
+  
+    display: grid;
+    grid-template-columns: repeat(6, 20px);
+    gap: 5px;
+  
+    padding: 12px;
+  
+    background: #fff;
+  
+    border: 1px solid #cfcfcf;
+    border-radius: 8px;
+  
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  
+    transform: translateY(-4px);
+    transition:
+      opacity 0.15s ease,
+      transform 0.15s ease,
+      visibility 0.15s ease;
+  }
+  
+  .color-swatches.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* =========================
+   Color dots
+   ========================= */
+
+.color-dot {
+    --bg: transparent;
+  
+    width: 20px;
+    height: 20px;
+  
+    background: var(--bg);
+    border: 1px solid color-mix(in srgb, var(--bg) 90%, black);
+    border-radius: 3px;
+  
+    padding: 0;
+    margin: 0;
+  
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+  
+    flex: 0 0 auto;
+  }
+  
+  .color-dot[data-color="default"] { --bg: #111; }
+  
+  .color-dot[data-color="#000000"] { --bg: #000000; }
+  .color-dot[data-color="#606060"] { --bg: #606060; }
+  .color-dot[data-color="#677FAE"] { --bg: #677FAE; }
+  .color-dot[data-color="#8267AE"] { --bg: #8267AE; }
+  .color-dot[data-color="#BF4FAD"] { --bg: #BF4FAD; }
+  .color-dot[data-color="#E95959"] { --bg: #E95959; }
+  .color-dot[data-color="#D77323"] { --bg: #D77323; }
+  .color-dot[data-color="#CAA23A"] { --bg: #CAA23A; }
+  .color-dot[data-color="#5E8347"] { --bg: #5E8347; }
+  .color-dot[data-color="#478378"] { --bg: #478378; }
+  .color-dot[data-color="#378CA7"] { --bg: #378CA7; }
+  
+  .color-dot[data-color="#FFFFFF"] { --bg: #FFFFFF; }
+  .color-dot[data-color="#F0F0F0"] { --bg: #F0F0F0; }
+  .color-dot[data-color="#E8ECF8"] { --bg: #E8ECF8; }
+  .color-dot[data-color="#F2EBF8"] { --bg: #F2EBF8; }
+  .color-dot[data-color="#F9E8F1"] { --bg: #F9E8F1; }
+  .color-dot[data-color="#FDEBEC"] { --bg: #FDEBEC; }
+  .color-dot[data-color="#FBECDE"] { --bg: #FBECDE; }
+  .color-dot[data-color="#FBF3DC"] { --bg: #FBF3DC; }
+  .color-dot[data-color="#EDF3EC"] { --bg: #EDF3EC; }
+  .color-dot[data-color="#E8F8F5"] { --bg: #E8F8F5; }
+  .color-dot[data-color="#E5F7FD"] { --bg: #E5F7FD; }
+  
+  .color-dot[data-color="transparent"] {
+    background: #fff;
+    border: 1px solid #c7c7c7;
+  }
+  
+  .color-dot.is-active {
+    outline: 1px solid #000;
+    outline-offset: -1px;
+  }
+
+  /* =========================
+   Custom colors
+   ========================= */
+
+.custom-colors-sep {
+    grid-column: 1 / -1;
+    height: 1px;
+  
+    background: #d4d4d4;
+  
+    margin-top: 7px;
+    margin-bottom: 3px;
+  }
+  
+  .custom-colors-title {
+    grid-column: 1 / -1;
+    color: #222;
+  }
+  
+  .custom-colors-row {
+    grid-column: 1 / -1;
+  
+    display: grid;
+    grid-template-columns: repeat(6, 20px);
+    gap: 5px;
+    align-items: start;
+  }
+  
+  .custom-colors-list {
+    display: contents;
+  }
+  
+  .custom-color-add {
+    width: 20px;
+    height: 20px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    border: 1px dashed #b5b5b5;
+    border-radius: 3px;
+  
+    background: #fff;
+    color: #666;
+  
+    padding: 0;
+    margin: 0;
+  
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  
+  .custom-color-add:hover {
+    background: #f3f3f3;
+  }
+  
+  .custom-color-chip {
+    width: 20px;
+    height: 20px;
+  
+    border: 1px solid #c7c7c7;
+    border-radius: 3px;
+  
+    padding: 0;
+    margin: 0;
+  
+    cursor: pointer;
+  
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .custom-color-chip.is-active {
+    outline: 2px solid #000;
+    outline-offset: -1px;
+  }
+  
+  .custom-color-input {
+    position: absolute;
+  
+    opacity: 0;
+    pointer-events: none;
+  
+    width: 1px;
+    height: 1px;
+  }
+
+  /* =========================
+   Color delete menu
+   ========================= */
+
+.color-delete-menu {
+    position: absolute;
+    z-index: 9999;
+  
+    background: #fff;
+  
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  
+    padding: 8px;
+  
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .color-delete-menu .delete-btn {
+    background: none;
+    border: none;
+  
+    cursor: pointer;
+  
+    font-size: 9px;
+  }
+  
+  .delete-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+
+   /* =========================
+   rich text colors
+   ========================= */
+
+    .rt-color {
+      color: var(--rt-color);
+      text-decoration-color: currentColor;
+    }
+
+    .rt-bg {
+      background-color: var(--rt-bg);
+      padding: 0;
+    }

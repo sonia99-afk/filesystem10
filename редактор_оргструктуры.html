@@ -1,0 +1,2051 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Оргструктура — дерево (минимум)</title>
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/toolbar.css" />
+  <link rel="stylesheet" href="css/tree-common.css" />
+  <link rel="stylesheet" href="css/drag.css" />
+  <link rel="stylesheet" href="css/text-formatting.css" />
+
+  <link rel="stylesheet" href="css/features/colors.css" />
+  <link rel="stylesheet" href="css/features/hotkeys.css" />
+  <link rel="stylesheet" href="css/features/level-headers.css" />
+  <link rel="stylesheet" href="css/features/marks.css" />
+  <link rel="stylesheet" href="css/features/multi-select.css" />
+  <link rel="stylesheet" href="css/features/mark-property.css" />
+
+  <link rel="stylesheet" href="css/views/schema.css" />
+  
+  <link rel="stylesheet" href="css/ui.css" />
+
+  <link rel="stylesheet" href="css/components/ui_toggle.css"/>
+
+  <link rel="stylesheet" href="css/components/ui_tooltip.css"/>
+
+<link rel="stylesheet" href="css/panels/hotkeys_panel_mode.css"/>
+
+<link rel="stylesheet" href="css/panels/hotkeys_modal.css" />
+
+<link rel="stylesheet" href="css/panels/hotkeys_sidebar.css" />
+
+<link
+  rel="stylesheet"
+  href="css/features/view_tabs.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="css/features/view_settings.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="css/components/ui_close_button.css"
+/>
+
+
+<link
+  rel="stylesheet"
+  href="css/components/ui_action_button.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="css/components/ui_dropdown.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="css/components/visibility_controls.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="css/components/ui_select.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="css/features/property_context_menu.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="css/features/level_header_context_menu.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="css/features/property_rename.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="css/features/property_delete.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="css/features/schema_text_property_editor.css"
+/>
+</head>
+<body>
+
+  <div class="grid-container">
+
+        <div class="leftbar">
+          <div class="toggle-left"><img src="icons/icon.png" class="iconsize" /></div>
+          <div class="projects-title">Проекты</div>
+
+          <div class="projects-list">
+            <button class="project-item in-act" type="button">Проект</button>
+          </div>
+          
+          <button class="project-add" type="button">+ новый</button>
+
+          <div class="leftbar-footer">
+
+  <div class="ui-toggle-field hotkeys-panel-mode-control">
+
+   <button
+  id="hotkeysPanelOpenBtn"
+  class="hotkeys-panel-open-btn"
+  type="button"
+>
+  Список функций<br>
+  и горячие клавиши
+</button>
+
+    <div class="ui-toggle-field__row">
+
+      <button
+        id="hotkeysPanelModeToggle"
+        class="ui-toggle"
+        type="button"
+        role="switch"
+        aria-checked="true"
+        aria-label="Открывать список функций сбоку"
+        data-ui-toggle
+        data-toggle-name="hotkeys-panel-sidebar"
+      ></button>
+
+      <span class="ui-toggle-field__label">
+        открывать сбоку
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
+        </div>
+  
+      <div class="hint">
+        <button class="btnn" onclick="undo()" style="margin-right: 10px;">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 14L4 9l5-5"/>
+          <path d="M4 9h9a7 7 0 1 1 0 14h-1"/>
+        </svg>
+        </button>
+
+        <button class="btnn" onclick="redo()">
+        <svg viewBox="0 0 24 24">
+          <path d="M15 14l5-5-5-5"/>
+          <path d="M20 9h-9a7 7 0 1 0 0 14h1"/>
+        </svg>
+        </button>
+
+        <button id="tgCopy" class="btnn copybtnn icon-copy"></button>
+          <div class="formatblock">
+            <button id="fmtBold" class="btnn"><b>B</b></button>
+            <button id="fmtItalic" class="btnn fmtItalic"><i>I</i></button>
+            <button id="fmtUnderline" class="btnn"><u>U</u></button>
+            <button id="fmtStrike" class="btnn"><s>S</s></button>
+        </div>
+
+        <div class="color-tools" id="colorTools">
+          <div class="color-group color-group-text">
+            <button id="textColorBtn" class="btnn color-main-btn btnn" type="button">
+              <span class="color-icon color-icon-bg">
+                <!-- <img src="icons/Vector3.png" class="color-icon-bg-img" /> -->
+                <span class="icon-text-color"></span>
+              </span>
+            </button>
+        
+            <div class="color-swatches" id="textColorSwatches">
+              <button class="color-dot" type="button" data-kind="text" data-color="#000000"></button>
+              <button class="color-dot" type="button" data-kind="text" data-color="#606060"></button>
+              <button class="color-dot" type="button" data-kind="text" data-color="#677FAE"></button>
+              <button class="color-dot" type="button" data-kind="text" data-color="#8267AE"></button>
+              <button class="color-dot" type="button" data-kind="text" data-color="#BF4FAD"></button>
+              <button class="color-dot" type="button" data-kind="text" data-color="#E95959"></button>
+              <button class="color-dot" type="button" data-kind="text" data-color="#D77323"></button>
+              <button class="color-dot" type="button" data-kind="text" data-color="#CAA23A"></button>
+              <button class="color-dot" type="button" data-kind="text" data-color="#5E8347"></button>
+              <button class="color-dot" type="button" data-kind="text" data-color="#478378"></button>
+              <button class="color-dot" type="button" data-kind="text" data-color="#378CA7"></button>
+              <!-- <button class="color-dot is-active" type="button" data-kind="text" data-color="default"></button> -->
+              <button class="color-dot is-active" type="button" data-kind="text" data-color="transparent"><span class="icon-transparent"></span></button>
+
+              <div class="custom-colors-sep"></div>
+              <div class="custom-colors-title">Свой цвет:</div>
+              <div class="custom-colors-row" data-kind="text">
+                <div class="custom-colors-list" id="textCustomColors"></div>
+                <button class="custom-color-add" type="button" data-kind="text"><span class="icon-plus"></span></button>
+                <input class="custom-color-input" id="textCustomColorInput" type="color" value="#000000" />
+              </div>
+            </div>
+          </div>
+        
+          <div class="color-group color-group-bg">
+            <button id="bgColorBtn" class="btnn color-main-btn" type="button">
+              <span class="color-icon color-icon-bg">
+                <!-- <img src="icons/Vector2.png" class="color-icon-bg-img" /> -->
+                <span class="icon-highlight"></span>
+              </span>
+            </button>
+        
+            <div class="color-swatches" id="bgColorSwatches">
+              <button class="color-dot color-dot-bg" type="button" data-kind="bg" data-color="#FFFFFF" ></button>
+              <button class="color-dot color-dot-bg" type="button" data-kind="bg" data-color="#F0F0F0"></button>
+              <button class="color-dot color-dot-bg" type="button" data-kind="bg" data-color="#E8ECF8"></button>
+              <button class="color-dot color-dot-bg" type="button" data-kind="bg" data-color="#F2EBF8"></button>
+              <button class="color-dot color-dot-bg" type="button" data-kind="bg" data-color="#F9E8F1"></button>
+              <button class="color-dot color-dot-bg" type="button" data-kind="bg" data-color="#FDEBEC"></button>
+              <button class="color-dot color-dot-bg" type="button" data-kind="bg" data-color="#FBECDE"></button>
+              <button class="color-dot color-dot-bg" type="button" data-kind="bg" data-color="#FBF3DC"></button>
+              <button class="color-dot color-dot-bg" type="button" data-kind="bg" data-color="#EDF3EC"></button>
+              <button class="color-dot color-dot-bg" type="button" data-kind="bg" data-color="#E8F8F5"></button>
+              <button class="color-dot color-dot-bg" type="button" data-kind="bg" data-color="#E5F7FD"></button>
+              <button class="color-dot color-dot-bg is-active" type="button" data-kind="bg" data-color="transparent"><span class="icon-transparent"></span></button>
+              
+              <div class="custom-colors-sep"></div>
+              <div class="custom-colors-title">Свой цвет:</div>
+              <div class="custom-colors-row" data-kind="bg">
+                <div class="custom-colors-list" id="bgCustomColors"></div>
+                <button class="custom-color-add" type="button" data-kind="bg"><span class="icon-plus"></span></button>
+                <input class="custom-color-input" id="bgCustomColorInput" type="color" value="#D9E4F7" />
+              </div>
+            </div>
+          </div>
+
+          <div class="color-group color-group-block">
+            <button id="blockBgBtn" class="btnn color-main-btn" type="button">
+              <span class="color-icon color-icon-bg">
+                <!-- <img src="icons/Vector.png" class="color-icon-bg-img" /> -->
+                 
+                <span class="icon-block-color"></span>
+              </span>
+            </button>
+          
+            <div class="color-swatches" id="blockBgSwatches">
+              <button class="color-dot color-dot-block" type="button" data-kind="block" data-color="#FFFFFF"></button>
+              <button class="color-dot color-dot-block" type="button" data-kind="block" data-color="#F0F0F0"></button>
+              <button class="color-dot color-dot-block" type="button" data-kind="block" data-color="#E8ECF8"></button>
+              <button class="color-dot color-dot-block" type="button" data-kind="block" data-color="#F2EBF8"></button>
+              <button class="color-dot color-dot-block" type="button" data-kind="block" data-color="#F9E8F1"></button>
+              <button class="color-dot color-dot-block" type="button" data-kind="block" data-color="#FDEBEC"></button>
+              <button class="color-dot color-dot-block" type="button" data-kind="block" data-color="#FBECDE"></button>
+              <button class="color-dot color-dot-block" type="button" data-kind="block" data-color="#FBF3DC"></button>
+              <button class="color-dot color-dot-block" type="button" data-kind="block" data-color="#EDF3EC"></button>
+              <button class="color-dot color-dot-block" type="button" data-kind="block" data-color="#E8F8F5"></button>
+              <button class="color-dot color-dot-block" type="button" data-kind="block" data-color="#E5F7FD"></button>
+              <button class="color-dot color-dot-block is-active" type="button" data-kind="block" data-color="transparent"><span class="icon-transparent"></span></button>
+
+              <div class="custom-colors-sep"></div>
+              <div class="custom-colors-title">Свой цвет:</div>
+              <div class="custom-colors-row" data-kind="block">
+                <div class="custom-colors-list" id="blockCustomColors"></div>
+                <button class="custom-color-add" type="button" data-kind="block"><span class="icon-plus"></span></button>
+                <input class="custom-color-input" id="blockCustomColorInput" type="color" value="#D9E4F7" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div
+  id="viewTabsRow"
+  class="view-tabs-row"
+  aria-label="Виды"
+>
+  <div class="view-tabs-scroll">
+    <div
+      id="viewTabsList"
+      class="view-tabs-list"
+      role="tablist"
+      aria-label="Открытые виды"
+    ></div>
+
+    <button
+  id="addViewTabBtn"
+  class="ui-action-button ui-action-button--soft view-tab-add"
+  type="button"
+>
+  + Вид
+</button>
+  </div>
+
+<button
+  id="viewSettingsOpenBtn"
+  class="
+    ui-action-button
+    ui-action-button--outline
+    view-settings-open-btn
+  "
+  type="button"
+  aria-controls="viewSettingsPanel"
+  aria-expanded="false"
+>
+  <span
+    class="view-settings-open-icon"
+    aria-hidden="true"
+  >
+    ⚙
+  </span>
+
+  <span>
+    Настроить вид
+  </span>
+</button>
+</div>
+
+<aside
+  id="viewSettingsPanel"
+  class="view-settings-panel"
+  aria-hidden="true"
+  aria-label="Настройка вида"
+>
+  <div class="view-settings-header">
+    <div class="view-settings-title">
+      Настройка вида
+    </div>
+
+    <button
+  id="viewSettingsCloseBtn"
+  class="ui-close-button view-settings-close-btn"
+  type="button"
+  aria-label="Закрыть настройки вида"
+  title="Закрыть"
+  data-ui-close
+> ×</button>
+  </div>
+
+  <div class="view-settings-body">
+    <div class="view-settings-select-field">
+
+  <select
+    id="viewSettingsViewSelect"
+    class="view-settings-view-select"
+    data-ui-select
+    aria-labelledby="viewSettingsViewSelectLabel"
+  ></select>
+</div>
+
+    <!-- =========================
+         Свойства
+    ========================== -->
+
+  <div class="view-settings-section-header">
+        <span class="view-settings-section-title">
+          Свойства
+        </span>
+      </div>
+
+    <!-- =========================
+     Свойства
+========================== -->
+
+<section class="view-settings-section">
+  <div class="view-settings-section-header">
+    <span class="view-settings-section-title">
+      Свойства
+    </span>
+
+    <span
+      id="viewSettingsPropertiesCount"
+      class="view-settings-section-count"
+    >
+      0
+    </span>
+  </div>
+
+  <!-- =========================
+       Метка
+  ========================== -->
+
+  <div
+    id="markTools"
+    class="view-settings-control-row mark-tools"
+    data-view-property-row
+    data-view-property="marks"
+  >
+    <div class="view-settings-control-main">
+      <span
+        class="view-settings-property-icon"
+        aria-hidden="true"
+      >
+        ◎
+      </span>
+
+      <span class="view-settings-control-name">
+        Метка
+      </span>
+    </div>
+
+    <div class="view-settings-control-actions">
+      <button
+        id="markSettingsBtn"
+        class="btnn view-settings-gear icon-settings"
+        type="button"
+        aria-label="Настройки отметки"
+        title="Настройки отображения отмеченных объектов"
+      ></button>
+
+      <button
+        id="toggleMarks"
+        class="ui-toggle"
+        type="button"
+        role="switch"
+        aria-checked="false"
+        aria-label="Показывать отметки"
+      ></button>
+    </div>
+
+    <div
+      id="markSettingsMenu"
+      class="mark-settings-menu"
+      aria-hidden="true"
+    >
+      <div class="mark-settings-title">
+        Отмеченные объекты:
+      </div>
+
+      <button
+        class="mark-settings-item"
+        type="button"
+        data-mark-mode="hide"
+      >
+        <span class="mark-settings-icon">
+          <img
+            src="icons/Показать.png"
+            class="color-icon-bg-img"
+            alt=""
+          />
+        </span>
+
+        <span class="mark-settings-text">
+          Скрыть
+        </span>
+      </button>
+
+      <button
+        class="mark-settings-item"
+        type="button"
+        data-mark-mode="strike"
+      >
+        <span class="mark-settings-icon">
+          <img
+            src="icons/Зачеркнутный.png"
+            class="color-icon-bg-img"
+            alt=""
+          />
+        </span>
+
+        <span class="mark-settings-text">
+          Зачеркнуть
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!--
+    Сюда view_settings.js автоматически добавит:
+
+    Иконка
+    Обложка
+  -->
+
+  <div
+    id="viewSettingsBeforeName"
+    class="view-settings-generated-list"
+  ></div>
+
+  <!-- =========================
+       Название
+  ========================== -->
+
+  <div
+    class="view-settings-control-row"
+    data-view-property-row
+    data-view-property="name"
+  >
+    <div class="view-settings-control-main">
+      <span
+        class="view-settings-property-icon"
+        aria-hidden="true"
+      >
+        Aa
+      </span>
+
+      <span class="view-settings-control-name">
+        Название
+      </span>
+    </div>
+
+    <div class="view-settings-control-actions">
+      <button
+        class="ui-toggle"
+        type="button"
+        role="switch"
+        aria-checked="true"
+        aria-disabled="true"
+        disabled
+        title="Название отображается всегда"
+      ></button>
+    </div>
+  </div>
+
+  <!-- =========================
+       Нумерация
+  ========================== -->
+
+  <div
+    class="view-settings-control-row"
+    data-view-property-row
+    data-view-property="ordinals"
+  >
+    <div class="view-settings-control-main">
+      <span
+        class="view-settings-property-icon"
+        aria-hidden="true"
+      >
+        №
+      </span>
+
+      <span class="view-settings-control-name">
+        Нумерация
+      </span>
+    </div>
+
+    <div class="view-settings-control-actions">
+      <button
+        id="toggleOrdinals"
+        class="ui-toggle"
+        type="button"
+        role="switch"
+        aria-checked="true"
+        aria-label="Показывать нумерацию"
+      ></button>
+    </div>
+  </div>
+
+  <!-- =========================
+       Описание
+  ========================== -->
+
+  <div
+    class="view-settings-control-row"
+    data-view-property-row
+    data-view-property="captions"
+  >
+    <div class="view-settings-control-main">
+      <span
+        class="view-settings-property-icon"
+        aria-hidden="true"
+      >
+        ≡
+      </span>
+
+      <span class="view-settings-control-name">
+        Описание
+      </span>
+    </div>
+
+    <div class="view-settings-control-actions">
+      <button
+        id="toggleCaptions"
+        class="ui-toggle"
+        type="button"
+        role="switch"
+        aria-checked="true"
+        aria-label="Показывать описание"
+      ></button>
+    </div>
+  </div>
+
+  <!--
+    Сюда view_settings.js автоматически добавит:
+
+    Текст
+    Дата начала
+    Время начала
+    Дата завершения
+    Время завершения
+    Приоритет
+    Фокус
+    Статус
+    Тег
+    Доп. изображения
+    Файл
+    Счётчик времени
+    Время таймера
+    Оставшееся время
+  -->
+
+  <div
+    id="viewSettingsAfterDescription"
+    class="view-settings-generated-list"
+  ></div>
+</section>
+
+    <!-- =========================
+         Интерфейс
+    ========================== -->
+
+    <section class="view-settings-section">
+      <div class="view-settings-section-header">
+        <span class="view-settings-section-title">
+          Интерфейс
+        </span>
+      </div>
+
+      <div
+        id="levelHeadersTools"
+        class="view-settings-control-row level-headers-tools"
+      >
+        <span class="view-settings-control-name">
+          Заголовки уровней
+        </span>
+
+        <div class="view-settings-control-actions">
+          <button
+            id="levelHeadersSettingsBtn"
+            class="btnn view-settings-gear icon-settings"
+            type="button"
+            aria-label="Настройки заголовков уровней"
+            title="Настройки заголовков уровней"
+            disabled
+          ></button>
+
+          <button
+            id="toggleLevelHeaders"
+            class="ui-toggle"
+            type="button"
+            role="switch"
+            aria-checked="false"
+            aria-label="Показывать заголовки уровней"
+          ></button>
+        </div>
+
+        <div
+          id="levelHeadersMenu"
+          class="level-headers-settings-menu"
+          aria-hidden="true"
+        >
+          <div class="level-headers-settings-title">
+            В шапке:
+          </div>
+
+          <button
+            type="button"
+            class="level-headers-settings-item"
+            data-level-header-mode="header-row"
+          >
+            <span class="level-headers-settings-icon"></span>
+            <span>Строкой</span>
+          </button>
+
+          <button
+            type="button"
+            class="level-headers-settings-item"
+            data-level-header-mode="header-cascade"
+          >
+            <span class="level-headers-settings-icon"></span>
+            <span>Каскадом</span>
+          </button>
+
+          <div class="level-headers-settings-title">
+            В колонке:
+          </div>
+
+          <button
+            type="button"
+            class="level-headers-settings-item"
+            data-level-header-mode="column-stack"
+          >
+            <span class="level-headers-settings-icon"></span>
+            <span>Столбцом</span>
+          </button>
+
+          <button
+            type="button"
+            class="level-headers-settings-item"
+            data-level-header-mode="column-cascade"
+          >
+            <span class="level-headers-settings-icon"></span>
+            <span>Каскадом</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+</aside>
+
+      <div class="object-breadcrumbs" id="objectBreadcrumbs">
+        <!-- <button type="button" class="object-breadcrumb-item">Путь</button>
+        <span class="object-breadcrumb-separator">›</span>
+        <button type="button" class="object-breadcrumb-item is-current">Путь</button>
+        <span class="object-breadcrumb-separator">›</span>
+        <button type="button" class="object-breadcrumb-item">Путь</button> -->
+      </div> 
+
+      <div class="main">
+        <div class="tree-scroll">
+          <div id="tree"></div>
+        </div>
+      </div>
+    
+  
+   
+<aside
+  id="hotkeysPanel"
+  class="sidebar"
+  aria-hidden="false"
+>
+  <!--
+    Старую кнопку оставляем в DOM для совместимости
+    с panel_toggle.js, но визуально полностью скрываем.
+  -->
+  <button
+    class="toggle-right"
+    type="button"
+    aria-hidden="true"
+    tabindex="-1"
+  >
+    <img
+      src="icons/icon2.png"
+      class="iconsize"
+      alt=""
+    />
+  </button>
+
+  <div class="hotkeys-panel-header">
+
+    <div class="panel-title">
+      Список функций и горячие клавиши
+    </div>
+
+    <button
+  id="hotkeysPanelCloseBtn"
+  class="ui-close-button hotkeys-panel-close-btn"
+  type="button"
+  aria-label="Закрыть список функций"
+  title="Закрыть"
+  data-ui-close
+> ×</button>
+
+  </div>
+
+<div class="hotkeys-panel-scroll">
+
+  <section class="hotkeys-section">
+
+<div class="hotkeys-navigation-controls">
+
+  <span class="view-switcher hotkeys-group-switcher">
+
+    <button
+      type="button"
+      class="btnn hotkeys-group-btn is-active"
+      data-hotkeys-group="lists"
+      aria-pressed="true"
+    >
+      Списки
+    </button>
+
+    <button
+      type="button"
+      class="btnn hotkeys-group-btn"
+      data-hotkeys-group="horizontal"
+      aria-pressed="false"
+    >
+      Горизонтальный
+    </button>
+
+    <button
+      type="button"
+      class="btnn hotkeys-group-btn"
+      data-hotkeys-group="vertical"
+      aria-pressed="false"
+    >
+      Вертикальный
+    </button>
+
+    <button
+      type="button"
+      class="btnn hotkeys-group-btn"
+      data-hotkeys-group="table"
+      aria-pressed="false"
+    >
+      Таблица
+    </button>
+
+  </span>
+
+</div>
+
+<div class="hotkeys-group-labels">
+
+  <div
+    class="hotkeys-group-label-col is-active"
+    data-hotkeys-group-label="lists"
+  >
+    <div>Структура</div>
+    <div>Лист</div>
+  </div>
+
+  <div
+    class="hotkeys-group-label-col"
+    data-hotkeys-group-label="horizontal"
+  >
+    <div>Айсикл горизонтальный</div>
+    <div>Иерархия горизонтальная</div>
+  </div>
+
+  <div
+    class="hotkeys-group-label-col"
+    data-hotkeys-group-label="vertical"
+  >
+    <div>Айсикл вертикальный</div>
+    <div>Иерархия вертикальная</div>
+  </div>
+
+  <div
+    class="hotkeys-group-label-col"
+    data-hotkeys-group-label="table"
+  >
+    <div>Таблица</div>
+  </div>
+
+</div>
+
+<div class="hotkeys-section-title">
+Навигация
+</div>
+
+
+
+<table class="hotkeys hotkeys-aligned">
+
+  <colgroup>
+  <col class="hotkeys-col-section" />
+  <col class="hotkeys-col-subsection" />
+  <col class="hotkeys-col-function" />
+  <col class="hotkeys-col-description" />
+  <col class="hotkeys-col-keyboard" />
+  <col class="hotkeys-col-mouse" />
+  <col class="hotkeys-col-interface" />
+</colgroup>
+
+<thead>
+<tr>
+
+<th></th>
+<th colspan="2">Функция</th>
+<th>Описание</th>
+<th>Клавиатура</th>
+<th>Мышь</th>
+<th>Интерфейс</th>
+
+</tr>
+</thead>
+
+<tbody>
+ <!-- Навигация -->
+
+<!-- ======================================================
+     ВЫБОР — СТРУКТУРА
+     ====================================================== -->
+
+<!-- ======================================================
+     ВЫБОР — СПИСКИ
+
+     Структура
+     Лист
+     ====================================================== -->
+
+<tr data-selection-view="lists">
+  <td rowspan="8">
+    Выбор
+  </td>
+
+  <td rowspan="2">
+    По списку
+  </td>
+
+  <td>
+    К началу
+  </td>
+
+  <td rowspan="2"></td>
+
+  <td
+    data-action="navUp"
+    data-fixed-key="ArrowUp"
+  ></td>
+
+  <td
+    rowspan="8"
+    data-action="navClick"
+  >
+    Click
+  </td>
+
+  <td
+    rowspan="8"
+    style="color: gray;"
+  >
+    нет, не нужно
+  </td>
+</tr>
+
+<tr data-selection-view="lists">
+  <td>
+    К концу
+  </td>
+
+  <td
+    data-action="navDown"
+    data-fixed-key="ArrowDown"
+  ></td>
+</tr>
+
+<!-- По свойствам в списках недоступно -->
+
+<tr
+  data-selection-view="lists"
+  class="hotkeys-view-unavailable"
+>
+  <td rowspan="2">
+    По свойствам
+  </td>
+
+  <td>
+    К концу
+  </td>
+
+  <td rowspan="2"></td>
+
+  <td class="hotkeys-disabled-cell">
+    недоступно
+  </td>
+</tr>
+
+<tr
+  data-selection-view="lists"
+  class="hotkeys-view-unavailable"
+>
+  <td>
+    К началу
+  </td>
+
+  <td class="hotkeys-disabled-cell">
+    недоступно
+  </td>
+</tr>
+
+<tr data-selection-view="lists">
+  <td rowspan="2">
+    По уровню
+  </td>
+
+  <td>
+    К внешнему
+  </td>
+
+  <td rowspan="2">
+    Переход к предыдущему/следующему
+    объекту того же уровня
+  </td>
+
+  <td
+    data-action="levelNavUp"
+    data-fixed-key="ArrowUp"
+  ></td>
+</tr>
+
+<tr data-selection-view="lists">
+  <td>
+    К вложенному
+  </td>
+
+  <td
+    data-action="levelNavDown"
+    data-fixed-key="ArrowDown"
+  ></td>
+</tr>
+
+<tr data-selection-view="lists">
+  <td rowspan="2">
+    По ветке
+  </td>
+
+  <td>
+    К началу
+  </td>
+
+  <td rowspan="2">
+    Переход к родителю / первому ребёнку
+    в текущей ветке
+  </td>
+
+  <td
+    data-action="branchNavLeft"
+    data-fixed-key="ArrowLeft"
+  ></td>
+</tr>
+
+<tr data-selection-view="lists">
+  <td>
+    К концу
+  </td>
+
+  <td
+    data-action="branchNavRight"
+    data-fixed-key="ArrowRight"
+  ></td>
+</tr>
+
+
+<!-- ======================================================
+     ВЫБОР — ГОРИЗОНТАЛЬНЫЕ ВИДЫ
+
+     Айсикл горизонтальный
+     Иерархия горизонтальная
+     ====================================================== -->
+
+<tr
+  data-selection-view="horizontal"
+  hidden
+>
+  <td rowspan="8">
+    Выбор
+  </td>
+
+  <td rowspan="2">
+    По списку
+  </td>
+
+  <td>
+    К началу
+  </td>
+
+  <td rowspan="2"></td>
+
+  <td
+    data-action="horizontalListUp"
+    data-fixed-key="ArrowUp"
+  ></td>
+
+  <td
+    rowspan="8"
+    data-action="horizontalNavClick"
+  >
+    Click
+  </td>
+
+  <td
+    rowspan="8"
+    style="color: gray;"
+  >
+    нет, не нужно
+  </td>
+</tr>
+
+<tr
+  data-selection-view="horizontal"
+  hidden
+>
+  <td>
+    К концу
+  </td>
+
+  <td
+    data-action="horizontalListDown"
+    data-fixed-key="ArrowDown"
+  ></td>
+</tr>
+
+<!-- По свойствам в горизонтальных видах недоступно -->
+
+<tr
+  data-selection-view="horizontal"
+  class="hotkeys-view-unavailable"
+  hidden
+>
+  <td rowspan="2">
+    По свойствам
+  </td>
+
+  <td>
+    К концу
+  </td>
+
+  <td rowspan="2"></td>
+
+  <td class="hotkeys-disabled-cell">
+    недоступно
+  </td>
+</tr>
+
+<tr
+  data-selection-view="horizontal"
+  class="hotkeys-view-unavailable"
+  hidden
+>
+  <td>
+    К началу
+  </td>
+
+  <td class="hotkeys-disabled-cell">
+    недоступно
+  </td>
+</tr>
+
+<tr
+  data-selection-view="horizontal"
+  hidden
+>
+  <td rowspan="2">
+    По уровню
+  </td>
+
+  <td>
+    К внешнему
+  </td>
+
+  <td rowspan="2">
+    Переход к предыдущему/следующему
+    объекту того же уровня
+  </td>
+
+  <td
+    data-action="horizontalLevelUp"
+    data-fixed-key="ArrowUp"
+  ></td>
+</tr>
+
+<tr
+  data-selection-view="horizontal"
+  hidden
+>
+  <td>
+    К вложенному
+  </td>
+
+  <td
+    data-action="horizontalLevelDown"
+    data-fixed-key="ArrowDown"
+  ></td>
+</tr>
+
+<tr
+  data-selection-view="horizontal"
+  hidden
+>
+  <td rowspan="2">
+    По ветке
+  </td>
+
+  <td>
+    К началу
+  </td>
+
+  <td rowspan="2">
+    Переход к родителю / первому ребёнку
+    в текущей ветке
+  </td>
+
+  <td
+    data-action="horizontalBranchLeft"
+    data-fixed-key="ArrowLeft"
+  ></td>
+</tr>
+
+<tr
+  data-selection-view="horizontal"
+  hidden
+>
+  <td>
+    К концу
+  </td>
+
+  <td
+    data-action="horizontalBranchRight"
+    data-fixed-key="ArrowRight"
+  ></td>
+</tr>
+
+<!-- ======================================================
+     ВЫБОР — ВЕРТИКАЛЬНАЯ ИЕРАРХИЯ /
+     ВЕРТИКАЛЬНЫЙ АЙСИКЛ
+     ====================================================== -->
+
+<tr data-selection-view="vertical" hidden>
+  <td rowspan="8">Выбор</td>
+
+  <td rowspan="2">По списку</td>
+  <td>К началу</td>
+  <td rowspan="2"></td>
+
+  <td
+    data-action="verticalListUp"
+    data-fixed-key="ArrowUp"
+  ></td>
+
+  <td
+    rowspan="8"
+    data-action="verticalNavClick"
+  >
+    Click
+  </td>
+
+  <td
+    rowspan="8"
+    style="color: gray;"
+  >
+    нет, не нужно
+  </td>
+</tr>
+
+<tr data-selection-view="vertical" hidden>
+  <td>К концу</td>
+
+  <td
+    data-action="verticalListDown"
+    data-fixed-key="ArrowDown"
+  ></td>
+</tr>
+
+<tr
+  data-selection-view="vertical"
+  class="hotkeys-view-unavailable"
+  hidden
+>
+  <td rowspan="2">По свойствам</td>
+  <td>К концу</td>
+  <td rowspan="2"></td>
+
+  <td class="hotkeys-disabled-cell">
+    недоступно
+  </td>
+</tr>
+
+<tr
+  data-selection-view="vertical"
+  class="hotkeys-view-unavailable"
+  hidden
+>
+  <td>К началу</td>
+
+  <td class="hotkeys-disabled-cell">
+    недоступно
+  </td>
+</tr>
+
+<tr data-selection-view="vertical" hidden>
+  <td rowspan="2">По уровню</td>
+  <td>К внешнему</td>
+
+  <td rowspan="2">
+    Переход к предыдущему/следующему
+    объекту того же уровня
+  </td>
+
+  <td
+    data-action="verticalLevelLeft"
+    data-fixed-key="ArrowLeft"
+  ></td>
+</tr>
+
+<tr data-selection-view="vertical" hidden>
+  <td>К вложенному</td>
+
+  <td
+    data-action="verticalLevelRight"
+    data-fixed-key="ArrowRight"
+  ></td>
+</tr>
+
+<tr data-selection-view="vertical" hidden>
+  <td rowspan="2">По ветке</td>
+  <td>К началу</td>
+
+  <td rowspan="2">
+    Переход к родителю / первому ребёнку
+    в текущей ветке
+  </td>
+
+  <td
+    data-action="verticalBranchUp"
+    data-fixed-key="ArrowUp"
+  ></td>
+</tr>
+
+<tr data-selection-view="vertical" hidden>
+  <td>К концу</td>
+
+  <td
+    data-action="verticalBranchDown"
+    data-fixed-key="ArrowDown"
+  ></td>
+</tr>
+
+
+<!-- ======================================================
+     ВЫБОР — ТАБЛИЦА
+     ====================================================== -->
+
+<tr data-selection-view="table" hidden>
+  <td rowspan="8">Выбор</td>
+
+  <td rowspan="2">По списку</td>
+  <td>К началу</td>
+  <td rowspan="2"></td>
+
+  <td
+    data-action="tableListUp"
+    data-fixed-key="ArrowUp"
+  ></td>
+
+  <td rowspan="8" data-action="tableNavClick">
+    Click
+  </td>
+
+  <td rowspan="8" style="color: gray;">
+    нет, не нужно
+  </td>
+</tr>
+
+<tr data-selection-view="table" hidden>
+  <td>К концу</td>
+
+  <td
+    data-action="tableListDown"
+    data-fixed-key="ArrowDown"
+  ></td>
+</tr>
+
+<!-- По свойствам — доступно только в таблице -->
+
+<tr data-selection-view="table" hidden>
+  <td rowspan="2">По свойствам</td>
+  <td>К началу</td>
+  <td rowspan="2"></td>
+
+  <td
+    data-action="tablePropertyLeft"
+    data-fixed-key="ArrowLeft"
+  ></td>
+</tr>
+
+<tr data-selection-view="table" hidden>
+  <td>К концу</td>
+  <td
+    data-action="tablePropertyRight"
+    data-fixed-key="ArrowRight"
+  ></td>
+</tr>
+  
+  
+
+<!-- По уровню — недоступно в таблице -->
+
+<tr
+  data-selection-view="table"
+  class="hotkeys-view-unavailable"
+  hidden
+>
+  <td rowspan="2">По уровню</td>
+  <td>К внешнему</td>
+
+  <td rowspan="2">
+    Переход к предыдущему/следующему объекту того же уровня
+  </td>
+
+  <td class="hotkeys-disabled-cell">
+    недоступно
+  </td>
+</tr>
+
+<tr
+  data-selection-view="table"
+  class="hotkeys-view-unavailable"
+  hidden
+>
+  <td>К вложенному</td>
+
+  <td class="hotkeys-disabled-cell">
+    недоступно
+  </td>
+</tr>
+
+<!-- По ветке — недоступно в таблице -->
+
+<tr
+  data-selection-view="table"
+  class="hotkeys-view-unavailable"
+  hidden
+>
+  <td rowspan="2">По ветке</td>
+  <td>К началу</td>
+
+  <td rowspan="2">
+    Переход к родителю / первому ребёнку в текущей ветке
+  </td>
+
+  <td class="hotkeys-disabled-cell">
+    недоступно
+  </td>
+</tr>
+
+<tr
+  data-selection-view="table"
+  class="hotkeys-view-unavailable"
+  hidden
+>
+  <td>К концу</td>
+
+  <td class="hotkeys-disabled-cell">
+    недоступно
+  </td>
+</tr>
+
+              <!-- Мультивыбор -->
+              <tr>
+                
+                <td rowspan="7">Мультивыбор</td>
+                <td rowspan="2">По дереву</td>
+                <td>К началу</td>
+                <td rowspan="2"></td>
+                <td data-action="deepUp" data-fixed-key="ArrowUp"></td>
+                <td rowspan="2" data-action="deepClick">Primary+Click</td>
+                <td rowspan="7" style="color: gray;">нет, не нужно</td>
+              </tr>
+              <tr>
+                <td>К концу</td><td data-action="deepDown" data-fixed-key="ArrowDown"></td>
+              </tr>
+
+              <tr>
+                <td rowspan="2">По уровню</td>
+                <td>К внешнему</td>
+                <td rowspan="2"></td>
+                <td data-action="rangeUp" data-fixed-key="ArrowUp"></td>
+                <td rowspan="2" data-action="rangeClick">Primary+Alt+Shift+Click</td>
+                
+              </tr>
+              <tr>
+                <td>К вложенному</td><td data-action="rangeDown" data-fixed-key="ArrowDown"></td>
+              </tr>
+  
+              <tr>
+                <td rowspan="2">По ветке</td>
+                <td>К началу</td>
+                <td rowspan="2">Расширение выделения к родителю / первому ребёнку по одной branch-цепочке</td>
+                <td data-action="branchRangeLeft" data-fixed-key="ArrowLeft"></td>
+                <td rowspan="2">-</td>
+                
+              </tr>
+              <tr>
+                <td>К концу</td><td data-action="branchRangeRight" data-fixed-key="ArrowRight"></td>
+              </tr>
+            
+              <tr>
+                <td colspan="2">Выделить всё</td>
+                <td></td>
+                <td data-action="selectAll"></td>
+                <td style="color: gray;">нет, не нужно</td>
+              </tr>
+
+              <!-- Перемещение -->
+
+              <tr>
+                
+                <td rowspan="9">Перемещение</td>
+                <td rowspan="2">По дереву</td>
+                <td>К началу</td>
+                <td></td>
+                <td data-action="moveUp" data-fixed-key="ArrowUp"></td>
+                <td rowspan="6" style="background-color: #f3f3f3;">Зажать ЛКМ > Переместить</td>
+                <td rowspan="6" style="color: gray;">нет, не нужно</td>
+              </tr>
+
+              <tr>
+                
+                <td>К концу</td>
+                <td></td>
+                <td data-action="moveDown" data-fixed-key="ArrowDown"></td>
+              </tr>
+
+              <tr>
+                <td rowspan="2">По уровню</td>
+                <td>К внешнему</td>
+                <td rowspan="2">Перемещение к предыдущему/следующему объекту того же уровня</td>
+                <td data-action="levelMoveUp" data-fixed-key="ArrowUp"></td>
+              </tr>
+              <tr>
+                <td>К вложенному</td><td data-action="levelMoveDown" data-fixed-key="ArrowDown"></td>
+              </tr>
+  
+              <tr>
+                <td rowspan="2">По ветке</td>
+                <td>К началу</td>
+                <td rowspan="2">Перемещение к родителю / вложение в первого ребёнка текущей ветки</td>
+                <td data-action="branchMoveLeft" data-fixed-key="ArrowLeft"></td>
+              </tr>
+              <tr>
+                <td>К концу</td><td data-action="branchMoveRight" data-fixed-key="ArrowRight"></td>
+              </tr>
+
+              <tr>
+                <td style="background-color: #FAEEC6;" colspan="2">Открыть карточку объекта</td>
+                <td style="background-color: #FAEEC6;"></td>
+                <td style="background-color: #FAEEC6;">Space</td>
+                <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+                <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              </tr>
+
+              <tr>
+                <td colspan="2">Проволится в объект</td>
+                <td></td>
+                <td data-action="focusIntoObject">Shift+[</td>
+                <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+                <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              </tr>
+
+              <tr>
+                <td style="background-color: #FAEEC6;" colspan="2">Наверх</td>
+                <td style="background-color: #FAEEC6;"></td>
+                <td style="background-color: #FAEEC6;" data-action="focusOutObject">Shift+]</td>
+                <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+                <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              </tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+  <section class="hotkeys-section">
+
+<div class="hotkeys-section-title">
+  Общее
+</div>
+
+<table class="hotkeys hotkeys-aligned">
+
+  <colgroup>
+  <col class="hotkeys-col-section" />
+  <col class="hotkeys-col-subsection" />
+  <col class="hotkeys-col-function" />
+  <col class="hotkeys-col-description" />
+  <col class="hotkeys-col-keyboard" />
+  <col class="hotkeys-col-mouse" />
+  <col class="hotkeys-col-interface" />
+</colgroup>
+
+<thead>
+<tr>
+  <th></th>
+<th colspan="2">Функция</th>
+<th>Описание</th>
+<th>Клавиатура</th>
+<th>Мышь</th>
+<th>Интерфейс</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td rowspan="3">Общее</td>
+              <td colspan="2">Отменить действие</td>
+              <td></td>
+              <td data-action="undo">Ctrl/Cmd+Z</td>
+              <td style="color: gray;">нет, не нужно</td>
+              <td class="ui-icon">
+                <svg class="ui-btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 14L4 9l5-5"/>
+                  <path d="M4 9h9a7 7 0 1 1 0 14h-1"/>
+                </svg>
+              </td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">Вернуть действие</td>
+              <td></td>
+              <td data-action="redo">Ctrl/Cmd+Shift+Z</td>
+              <td style="color: gray;">нет, не нужно</td>
+              <td class="ui-icon">
+                <svg class="ui-btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15 14l5-5-5-5"/>
+                  <path d="M20 9h-9a7 7 0 1 0 0 14h1"/>
+                </svg>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2">Переключение режимов просмотра</td>
+              <td></td>
+              <td style="color: gray;">нет, не нужно</td>
+              <td style="color: gray;">нет, не нужно</td>
+              <td> Тумблер режимов </td>
+            </tr>
+</tbody>
+</table>
+
+</section>
+
+
+
+  <section class="hotkeys-section">
+
+<div class="hotkeys-section-title">
+  Работа с объектами
+</div>
+
+<table class="hotkeys hotkeys-aligned">
+
+  <colgroup>
+  <col class="hotkeys-col-section" />
+  <col class="hotkeys-col-subsection" />
+  <col class="hotkeys-col-function" />
+  <col class="hotkeys-col-description" />
+  <col class="hotkeys-col-keyboard" />
+  <col class="hotkeys-col-mouse" />
+  <col class="hotkeys-col-interface" />
+</colgroup>
+
+<thead>
+<tr>
+
+<th></th>
+<th colspan="2">Функция</th>
+<th>Описание</th>
+<th>Клавиатура</th>
+<th>Мышь</th>
+<th>Интерфейс</th>
+</tr>
+</thead>
+
+<tbody>
+
+            <!-- Работа с объектами -->
+            <tr>
+              <td rowspan="11">Редактирование</td>
+
+              <td colspan="2">Создать на следующей ветке</td>
+              <td></td>
+              <td data-action="addSibling">Enter</td>
+              <!-- <td data-action="addSiblingClick"></td> -->
+              <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              <td>[+]</td>
+            </tr>
+        
+            <tr>
+              <td colspan="2">Создать на вложенныом уровене</td>
+              <td></td>
+              <td data-action="addChild">Shift+Enter</td>
+              <!-- <td data-action="addChildClick"></td> -->
+              <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              <td>[>]</td>
+            </tr>
+
+            <tr>
+              <td colspan="2">Дублировать с вложенными уровнями</td>
+              <td></td>
+              <td data-action="duplicate">Ctrl/Cmd+D</td>
+              <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              <td>-</td>
+            </tr>
+
+            <tr>
+              <td colspan="2">Дублировать без вложенных уровней</td>
+              <td>Включая своства объекта</td>
+              <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              <td>-</td>
+            </tr>
+
+            <tr>
+              <td colspan="2">Редактировать название/взаимодействие с ячейкой</td>
+              <td></td>
+              <td data-action="rename">ё</td>
+              <td data-action="renameClick">DblClick</td>
+              <td>[..]</td>
+            </tr>
+
+            <tr>
+              <td colspan="2">Добавить / Редактировать описание</td>
+              <td></td>
+              <td data-action="addCaption">Ctrl/Cmd+Enter</td>
+              <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              <td>-</td>
+            </tr>
+
+            <tr>
+              <td colspan="2">Копировать с вложенностями</td>
+              <td>Со всеми уровнями вложеннности и их своства</td>
+              <td data-action="copy">Ctrl/Cmd+C</td>
+              <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              <td style="color: gray;">нет, не нужно</td>
+            </tr>
+
+            <tr>
+              <td colspan="2">Копировать без вложенностей</td>
+              <td>Копирует свойства объекта, но не копируем объекты вложенные в него </td>
+              <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              <td style="color: gray;">нет, не нужно</td>
+            </tr>
+
+            <tr>
+              <td colspan="2">Вырезать</td>
+              <td></td>
+              <td data-action="cut">Ctrl/Cmd+X</td>
+              <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              <td style="color: gray;">нет, не нужно</td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">Вставить</td>
+              <td></td>
+              <td data-action="paste">Ctrl/Cmd+V</td>
+              <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              <td style="color: gray;">нет, не нужно</td>
+            </tr>
+
+            <tr>
+              <td colspan="2">Удалить</td>
+              <td></td>
+              <td data-action="delete">Ctrl/Cmd+Backspace</td>
+              <!-- <td data-action="deleteClick"></td> -->
+              <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              <td>[х]</td>
+            </tr>
+              <tr>
+                <td rowspan="3">Свойства</td>
+                <td style="background-color: #FAEEC6;" colspan="2">Добавить свойство</td>
+                <td style="background-color: #FAEEC6;"></td>
+                <td style="color: gray;"> нет, не нужно</td>
+                <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+                <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              </tr>
+
+              <tr>
+                <td style="background-color: #FAEEC6;" colspan="2">Скрыть свойство</td>
+                <td style="background-color: #FAEEC6;">Все кроме "Описания"</td>
+                <td style="color: gray;"> нет, не нужно</td>
+                <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+                <td>Нумирация</td>
+              </tr>
+
+              <tr>
+                <td style="background-color: #FAEEC6;" colspan="2">Удалить свойство</td>
+                <td style="background-color: #FAEEC6;"></td>
+                <td style="color: gray;"> нет, не нужно</td>
+                <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+                <td style="background-color: #FAEEC6;">нет, добавить позже</td>
+              </tr>
+
+</tbody>
+</table>
+
+</section>
+
+
+<section class="hotkeys-section">
+
+<div class="hotkeys-section-title">
+Работа с текстом
+</div>
+
+<table class="hotkeys hotkeys-aligned">
+
+  <colgroup>
+  <col class="hotkeys-col-section" />
+  <col class="hotkeys-col-subsection" />
+  <col class="hotkeys-col-function" />
+  <col class="hotkeys-col-description" />
+  <col class="hotkeys-col-keyboard" />
+  <col class="hotkeys-col-mouse" />
+  <col class="hotkeys-col-interface" />
+</colgroup>
+
+<thead>
+<tr>
+
+<th></th>
+<th colspan="2">Функция</th>
+<th>Описание</th>
+<th>Клавиатура</th>
+<th>Мышь</th>
+<th>Интерфейс</th>
+</tr>
+</thead>
+
+<tbody>
+
+              <!-- Работа с текстом -->
+
+              <tr>
+                
+                <td rowspan="7">Содержание</td>
+                <td colspan="2">Перенос строки в описании</td>
+                <td>Во время редактирования названия и описания </td>
+                <td data-action="addCaptionLineBreak">Shift+Enter</td>
+                <td style="color: gray;">нет, не нужно</td>
+                <td style="color: gray;">нет, не нужно</td>
+              </tr>
+
+              <tr>
+                <td style="background-color: #FAEEC6;" colspan="2">Сохранить, выйти из редактирования</td>
+                <td style="background-color: #FAEEC6;"></td>
+                <td style="background-color: #FAEEC6;">Enter</td>
+                <td style="background-color: #FAEEC6;">-</td>
+                <td style="background-color: #FAEEC6;">-</td>
+              </tr>
+
+              <tr>
+                <td colspan="2">Выделить всё</td>
+                <td></td>
+                <td>Cmd+A</td>
+                <td  style="background-color: #FAEEC6;">ПКМ > Выделить всё</td>
+                <td style="color: gray;">нет, не нужно</td>
+              </tr>
+
+              <tr>
+                <td colspan="2">Копировать</td>
+                <td></td>
+                <td>Cmd+C</td>
+                <td  style="background-color: #FAEEC6;">ПКМ > Копировать</td>
+                <td style="color: gray;">нет, не нужно</td>
+              </tr>
+
+              <tr>
+                <td colspan="2">Выделить</td>
+                <td></td>
+                <td>Cmd+X</td>
+                <td  style="background-color: #FAEEC6;">ПКМ > Вырезать</td>
+                <td style="color: gray;">нет, не нужно</td>
+              </tr>
+
+              <tr>
+                <td colspan="2">Вставить</td>
+                <td></td>
+                <td>Cmd+V</td>
+                <td  style="background-color: #FAEEC6;">ПКМ > Вставить</td>
+                <td style="color: gray;">нет, не нужно</td>
+              </tr>
+
+              <tr>
+                <td colspan="2">Удалить</td>
+                <td></td>
+                <td>Backspace</td>
+                <td style="color: gray;">нет, не нужно</td>
+                <td style="color: gray;">нет, не нужно</td>
+              </tr>
+
+              <!-- Работа с форматом текста -->
+            <tr>
+              
+                <td rowspan="4">Стиль</td>
+              <td colspan="2">Полужирный</td>
+              <td></td>
+              <td data-action="bold">Ctrl/Cmd+B</td>
+              <td>-</td>
+              <td><b>B</b></td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">Курсив</td>
+              <td></td>
+              <td data-action="italic">Ctrl/Cmd+I</td>
+              <td>-</td>
+              <td><i>I</i></td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">Зачёркнутый</td>
+              <td></td>
+              <td data-action="strike">Ctrl/Cmd+Shift+X</td>
+              <td>-</td>
+              <td><s>S</s></td>
+            </tr>
+            
+            <tr>
+              <td colspan="2">Подчёркнутый</td>
+              <td></td>
+              <td data-action="underline">Ctrl/Cmd+U</td>
+              <td>-</td>
+              <td><u>U</u></td>
+            </tr>
+
+            <!-- Цвет текста -->
+
+            <tr>
+
+
+              <td rowspan="20">Цвет</td>
+
+              <td rowspan="6">Фона</td>
+              <td>цвет 1</td>
+              
+              <td rowspan="6"></td>
+              <td data-action="bgColor1">Alt+1</td>
+              <td rowspan="6" style="background-color: #FAEEC6;">нет, добавить позже: ПКМ > "Заливка"</td>
+              <td rowspan="6"><span class="icon-block-color"></span></td>
+            </tr>
+            <tr><td>Цвет 2</td><td data-action="bgColor2">Alt+2</td></tr>
+            <tr><td>Цвет 3</td><td data-action="bgColor3">Alt+3</td></tr>
+            <tr><td>Цвет 4</td><td data-action="bgColor4">Alt+4</td></tr>
+            <tr><td>Цвет 5</td><td data-action="bgColor5">Alt+5</td></tr>
+            <tr><td>Цвет 6-11, и Пользововательские</td><td style="color: gray;">нет</td></tr>
+
+            <tr>
+
+              <td rowspan="6">Текста</td>
+              <td>Цвет 1</td>
+              <td rowspan="6"></td>
+              <td data-action="textColor1">Ctrl/Cmd+1</td>
+              <td rowspan="6" style="background-color: #FAEEC6;">нет, добавить позже: ПКМ > "Цвет Текста"</td>
+              <td rowspan="6"> <span class="icon-text-color"></span></td>
+            </tr>
+            <tr><td>Цвет 2</td><td data-action="textColor2">Ctrl/Cmd+2</td></tr>
+            <tr><td>Цвет 3</td><td data-action="textColor3">Ctrl/Cmd+3</td></tr>
+            <tr><td>Цвет 4</td><td data-action="textColor4">Ctrl/Cmd+4</td></tr>
+            <tr><td>Цвет 5</td><td data-action="textColor5">Ctrl/Cmd+5</td></tr>
+            <tr><td>Цвет 6-11, и Пользововательские</td><td style="color: gray;">нет</td></tr>
+            
+            
+
+            <tr>
+              <td>Выделение</td>
+              <td>Цвет 1-11, и Пользововательские</td>
+              <td></td>
+              <td style="color: gray;">нет, не нужно</td>
+              <td style="background-color: #FAEEC6;">нет, добавить позже: ПКМ > "Выделение"</td>
+              <td><span class="icon-highlight"></span></td>
+            </tr>
+          </tbody>
+        </table>
+
+</tbody>
+</table>
+
+</section>
+
+</div> <!-- hotkeys-panel-scroll -->
+
+
+<div class="hotkeys-panel-footer">
+
+        <div class="hkbar">
+          <span class="hk-btns">
+            <!-- class="hkEditBtn"  class="hkSaveBtn"  class="hkDiscardBtn"  class="hotkeysResetBtn" -->
+            <!-- <button id="hkEditBtn" class="btnn">Редактировать</button> -->
+
+            <!-- <button id="hkDiscardBtn" class="btnn dontsave"></button> -->
+            <button id="hkDiscardBtn" class="btnn dontsave"></button>
+            
+            <button id="hotkeysResetBtn" class="btnn"></button>
+
+            <button id="hkSaveBtn" class="btnn save"></button>
+          </span>
+        </div>
+      
+        <div class="panel-note">
+</div>
+
+</div>
+          
+        </div>
+      </aside>
+      </div>
+    
+  </div>
+  <script src="hotkeys_view_group.js"></script>
+  <script src="hotkeys_config.js"></script>
+<script src="ui_resources.js"></script>
+<script src="data/project_document.js"></script>
+<script src="data/project_repository.js"></script>
+<script src="app_core.js"></script>
+<script src="project_properties.js"></script>
+<script src="schema_text_property_editor.js"></script>
+<script src="rename.js"></script>
+<script src="schema_autoscroll.js"></script>
+<script src="visibility_controls.js"></script>
+<script src="app2.js"></script>
+<script src="arrow_scroll_lock.js"></script>
+
+<script src="schema_lines.js"></script>
+<script src="schema_hidden_level_lines.js"></script>
+  
+  <script src="hotkeys_editor.js"></script>
+  
+  <script src="hotkeys_ui.js"></script> 
+  <script src="hotkeys_navigation_views.js"></script>
+  <script src="vertical_nav.js"></script>
+  <script src="horizontal_nav.js"></script>
+  <script src="hotkey_hold_repeat.js"></script>
+  <script src="multi_select_patch.js"></script>
+  <script src="multi_select_deep.js"></script>
+
+  <script src="text_formatting.js"></script>
+
+  <script src="color_formating/color_tools_ui.js"></script>
+  <script src="color_formating/text_color_formatting.js"></script>
+  <script src="color_formating/block_bg_formatting.js"></script>
+
+  <script src="drag_move.js"></script>
+  <script src="clipboard_ops.js"></script>
+
+  <script src="level_nav.js"></script>
+  <script src="branch_nav.js"></script>
+  <script src="level_move.js"></script>
+  <script src="ui_toggle.js"></script>
+<script src="hotkeys_panel_mode.js"></script>
+  <script src="panel_toggle.js"></script>
+<script src="hotkeys_panel_controller.js"></script>
+
+  <script src="branch_move.js"></script>
+<script src="multi_select_branch.js"></script>
+
+<script src="ui_anchored_popup.js"></script>
+<script src="mark_property.js"></script>
+  <script src="object_focus_mode.js"></script>
+  <script src="level_headers.js"></script>
+  <script src="autosave.js"></script>
+  <script src="collapse_nodes.js"></script>
+  <script src="hide_nodes.js"></script>
+  <script src="hide_levels.js"></script>
+  <script src="spa_router.js"></script>
+  <script src="view_tabs.js"></script>
+  <script src="ui_tooltip.js"></script>
+  <script src="view_settings.js"></script>
+  <script src="navigation_controller.js"></script>
+  <script src="schema_active_block.js"></script>
+  <script src="property_panel_tabs.js"></script>
+  <script src="property_context_menu.js"></script>
+  <script src="property_rename.js"></script>
+  <script src="property_delete.js"></script>
+  <script src="level_header_context_menu.js"></script>
+  <script src="ui_select.js"></script>
+</body>
+</html>

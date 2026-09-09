@@ -1,0 +1,58 @@
+/* ui_resources.css */
+
+.icon-settings::before {
+    content: "";
+    display: block;
+    width: 11px;
+    height: 11px;
+    background: center / contain no-repeat url("../icons/rol.png");
+  }
+  
+  .icon-copy::before {
+    content: "";
+    display: block;
+    width: 14px;
+    height: 14px;
+    background: center / contain no-repeat url("../icons/Копировать.png");
+  }
+  
+  .icon-text-color::before {
+    content: "";
+    display: block;
+    width: 11px;
+    height: 11px;
+    background: center / contain no-repeat url("../icons/Vector3.png");
+  }
+  
+  .icon-highlight::before {
+    content: "";
+    display: block;
+    width: 11px;
+    height: 11px;
+    background: center / contain no-repeat url("../icons/Vector2.png");
+  }
+  
+  .icon-block-color::before {
+    content: "";
+    display: block;
+    width: 11px;
+    height: 11px;
+    background: center / contain no-repeat url("../icons/Vector.png");
+  }
+  
+  .icon-plus::before {
+    content: "";
+    display: block;
+    width: 14px;
+    height: 14px;
+    background: center / contain no-repeat url("../icons/Полюс.png");
+  }
+  
+  .icon-transparent::before {
+    content: "";
+    display: block;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    background: center / contain no-repeat url("../icons/Union (1).png");
+  }

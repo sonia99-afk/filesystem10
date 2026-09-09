@@ -1,0 +1,173 @@
+/* ui_tooltip.css */
+
+.ui-tooltip {
+  --ui-tooltip-arrow-offset: 50%;
+
+  position: fixed;
+  z-index: 1000;
+
+  width: max-content;
+  max-width: min(
+    320px,
+    calc(100vw - 16px)
+  );
+
+  padding: 9px 11px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d8d8d8;
+  border-radius: 7px;
+
+  background: #fff;
+  color: #333;
+
+  box-shadow:
+    0 4px 14px
+    rgba(0, 0, 0, 0.16);
+
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.35;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+
+  pointer-events: none;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 120ms ease,
+    visibility 120ms ease;
+}
+
+.ui-tooltip.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ui-tooltip::before,
+.ui-tooltip::after {
+  content: "";
+
+  position: absolute;
+
+  width: 0;
+  height: 0;
+
+  pointer-events: none;
+}
+
+/* Подсказка справа — хвостик слева. */
+
+.ui-tooltip[data-placement="right"]::before {
+  left: -8px;
+  top: var(
+    --ui-tooltip-arrow-offset
+  );
+
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 8px solid #d8d8d8;
+
+  transform: translateY(-50%);
+}
+
+.ui-tooltip[data-placement="right"]::after {
+  left: -7px;
+  top: var(
+    --ui-tooltip-arrow-offset
+  );
+
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 7px solid #fff;
+
+  transform: translateY(-50%);
+}
+
+/* Подсказка слева — хвостик справа. */
+
+.ui-tooltip[data-placement="left"]::before {
+  right: -8px;
+  top: var(
+    --ui-tooltip-arrow-offset
+  );
+
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 8px solid #d8d8d8;
+
+  transform: translateY(-50%);
+}
+
+.ui-tooltip[data-placement="left"]::after {
+  right: -7px;
+  top: var(
+    --ui-tooltip-arrow-offset
+  );
+
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 7px solid #fff;
+
+  transform: translateY(-50%);
+}
+
+/* Подсказка снизу — хвостик сверху. */
+
+.ui-tooltip[data-placement="bottom"]::before {
+  top: -8px;
+  left: var(
+    --ui-tooltip-arrow-offset
+  );
+
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  border-bottom: 8px solid #d8d8d8;
+
+  transform: translateX(-50%);
+}
+
+.ui-tooltip[data-placement="bottom"]::after {
+  top: -7px;
+  left: var(
+    --ui-tooltip-arrow-offset
+  );
+
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  border-bottom: 7px solid #fff;
+
+  transform: translateX(-50%);
+}
+
+/* Подсказка сверху — хвостик снизу. */
+
+.ui-tooltip[data-placement="top"]::before {
+  bottom: -8px;
+  left: var(
+    --ui-tooltip-arrow-offset
+  );
+
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  border-top: 8px solid #d8d8d8;
+
+  transform: translateX(-50%);
+}
+
+.ui-tooltip[data-placement="top"]::after {
+  bottom: -7px;
+  left: var(
+    --ui-tooltip-arrow-offset
+  );
+
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  border-top: 7px solid #fff;
+
+  transform: translateX(-50%);
+}

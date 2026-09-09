@@ -1,0 +1,541 @@
+.level-headers-tools{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    
+  }
+  
+  .level-headers-tools .btnn{
+    margin:0;
+  }
+  
+  .level-headers-toggle{
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+  }
+  
+  .level-headers-settings-btn{
+    min-width:31px;
+    border-left:none !important;
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
+    
+    line-height:14px;
+  }
+  
+  .level-headers-settings-menu{
+    display:none;
+    position:absolute;
+    left:95%;
+    top:12px;
+    width:111px;
+    z-index:9999;
+    border:1px solid #b8b8b8;
+    border-radius:6px;
+    background:#fff;
+    box-shadow:0 4px 18px rgba(0,0,0,.12);
+    overflow:hidden;
+    
+  }
+  
+  .level-headers-settings-menu.is-open{
+    display:block;
+  }
+  
+  .level-headers-settings-title:first-child{
+    padding-top:8px;
+  }
+
+  .level-headers-settings-title{
+    padding-left:10px;
+    color:#7a7a7a;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  .level-headers-settings-item:last-child{
+      margin-bottom:8px;
+  }
+  
+  .level-headers-settings-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    width:100%;
+    border:none;
+    background:#fff;
+    color:#000;
+    padding:7px 10px;
+    font:inherit;
+    text-align:left;
+    cursor:pointer;
+  }
+  
+  .level-headers-settings-item:hover,
+  .level-headers-settings-item.is-active{
+    background:#e5e5e5;
+  }
+  
+  .level-headers-settings-icon{
+    width:14px;
+    height:14px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 14px;
+  }
+  
+  .level-headers-settings-icon::before{
+    content:"";
+    width:14px;
+    height:14px;
+    border:1px solid #000;
+    border-radius:50%;
+    box-sizing:border-box;
+  }
+  
+  .level-headers-settings-item.is-active .level-headers-settings-icon::before{
+    background:radial-gradient(circle at center, #5e5e5e 0 52%, transparent 56% 100%);
+  }
+  
+  .level-headers-row{
+    position:relative;
+    min-height:24px;
+    width:100%;
+    max-width:100%;
+    background:#f4f4f4;
+    font-family:inherit;
+    
+    line-height:1;
+    color:#777;
+    box-sizing:border-box;
+    overflow:hidden;
+  }
+  
+  .level-headers-row-schema{
+    margin-bottom:8px;
+  }
+  
+  .level-header-item{
+    position:absolute;
+    top:0;
+    display:block;
+    height:24px;
+    padding:2px;
+    margin:0;
+    border:none;
+    background:transparent;
+    font:inherit;
+    color:inherit;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    box-sizing:border-box;
+    cursor:text;
+  }
+
+  
+  .level-header-edit{
+    position:absolute;
+    top:0;
+    height:24px;
+    width:90px;
+    min-width:40px;
+    border:none;
+    outline:none;
+    background:#fff;
+    padding:3px 6px;
+    font:inherit;
+    color:#333;
+    box-sizing:border-box;
+  }
+
+  .level-headers-cascade{
+  background:#f4f4f4;
+  margin-bottom:8px;
+  
+}
+
+.level-header-mini-tree{
+  list-style:none;
+  margin:0;
+  
+}
+
+.level-header-mini-tree:first-child{
+  padding-left:0;
+}
+
+.level-header-mini-li{
+  position:relative;
+  min-height:18px;
+}
+
+.level-header-mini-li::before{
+  content:"";
+  position:absolute;
+  left:-14px;
+  top:9px;
+  width:14px;
+  border-top:1px solid #888;
+}
+
+
+
+.level-header-mini-tree:first-child > .level-header-mini-li::before{
+  display:none;
+}
+
+.level-header-mini-item{
+  display:inline-flex;
+  align-items:center;
+  color:#777;
+  
+  height:20px;
+  line-height:20px;
+
+  min-width:20px;
+  padding:0 4px;
+  box-sizing:border-box;
+
+  white-space:pre;
+  overflow:hidden;
+  text-overflow:ellipsis;
+
+  cursor:text;
+  margin-left:5px;
+  font:inherit;
+}
+
+.level-headers-cascade .level-header-edit{
+  position:static;
+  display:inline-block;
+  width:160px;
+  height:18px;
+  padding:0 4px;
+  vertical-align:baseline;
+}
+
+
+
+.level-headers-column{
+    flex:0 0 auto;
+    min-width:120px;
+    max-width:none;
+  width:max-content;
+
+
+  min-height:100%;
+  background:#f4f4f4;
+  padding:6px 10px;
+  box-sizing:border-box;
+  color:#777;
+  
+  line-height:18px;
+}
+
+.level-header-column-item{
+  display:block;
+  height:21px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  cursor:text;
+}
+
+.level-headers-column .level-header-edit{
+  position:static;
+  display:block;
+  width:100%;
+  height:18px;
+  padding:0 4px;
+}
+
+.schema-with-level-column{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+}
+
+.schema-with-level-column > ul{
+  margin-top:0;
+}
+
+
+
+.level-headers-column-cascade{
+    min-width:160px;
+    max-width:none;
+    width:max-content;
+  flex:0 0 auto;
+  min-height:100%;
+  background:#f4f4f4;
+  padding:0 10px 0 10px;
+  box-sizing:border-box;
+  font-size:inherit;
+    line-height:20px;
+}
+
+      .level-headers-column-cascade .level-header-mini-tree{
+  list-style:none;
+  margin:0;
+  padding-left:31px;
+  position:relative;
+}
+
+
+
+.level-headers-column-cascade .level-header-mini-li{
+  position:relative;
+  margin:0;
+  padding-left:0px;
+  min-height:20px;
+    line-height:20px;
+}
+
+.level-headers-column-cascade > .level-header-mini-tree > .level-header-mini-li{
+  padding-left:0;
+}
+
+.level-header-anchor{
+  position:absolute;
+  top:calc(0.9em - 4px);
+  left:0;
+  width:0;
+  height:0;
+  pointer-events:none;
+}
+
+.level-header-trunk{
+  position:absolute;
+  left:calc(12px - 0px);
+  border-left:1px solid #888;
+  pointer-events:none;
+}
+
+.level-header-plink{
+  position:absolute;
+  left:calc(12px - 3px);
+  border-left:1px solid #888;
+  pointer-events:none;
+}
+
+.level-headers-column-cascade .level-header-mini-li::before{
+  content:"";
+  position:absolute;
+  top:calc(0.9em - 4px);
+    left:calc(12px - 3px - 28px);
+  width:16px;
+  border-top:1px solid #888;
+}
+
+.level-headers-column-cascade > .level-header-mini-tree{
+  padding-left:0;
+}
+
+.level-headers-column-cascade > .level-header-mini-tree > .level-header-mini-li::before{
+  display:none;
+}
+
+.level-headers-cascade .level-header-mini-li > .level-header-mini-tree{
+  position:relative;
+  padding-left:28px;
+}
+
+.level-headers-cascade .level-header-mini-li:has(> .level-header-mini-tree > .level-header-mini-li) > .level-header-mini-tree::before{
+  content:"";
+  position:absolute;
+  left:14px;
+  
+  height:9px;
+  border-left:1px solid #888;
+}
+
+.level-headers-cascade > .level-header-mini-tree::before{
+  display:none;
+}
+
+
+/* =========================
+   Level headers: table view
+   ========================= */
+
+   .level-headers-row-table {
+    position: relative;
+    margin-bottom: 8px;
+    width: max-content;
+    min-width: 100%;
+    overflow: visible;
+  }
+  
+  .level-headers-row-table .level-header-item {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    width: 120px;
+    height: 24px;
+    padding: 2px 6px;
+  }
+  
+  .level-headers-cascade-table {
+    width: max-content;
+    margin-bottom: 8px;
+  }
+  
+  .level-headers-column-table {
+  /*
+    Реальный отступ устанавливает JS
+    по высоте thead.
+  */
+  margin-top: 0;
+}
+  
+  .table-with-level-headers {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .level-header-na {
+    cursor: default;
+    opacity: 0.7;
+  }
+
+  .level-headers-cascade-table {
+    padding: 6px 10px;
+  }
+  
+  .level-headers-cascade-table .level-header-mini-tree {
+    padding-left: 0 !important;
+  }
+  
+  .level-headers-cascade-table .level-header-mini-li {
+    min-height: 20px;
+    padding-left: 0;
+  }
+  
+  .level-headers-cascade-table .level-header-mini-li::before,
+  .level-headers-cascade-table .level-header-mini-tree::before {
+    display: none !important;
+  }
+  
+  .level-headers-cascade-table .level-header-mini-item {
+    margin-left: 0;
+  }
+
+  /* =========================================================
+   Синхронизация уровней со строками таблицы
+========================================================= */
+
+.level-headers-column-stack-table
+.level-header-column-item {
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+.level-headers-column-cascade-table
+.level-header-mini-item {
+  display: flex;
+  align-items: center;
+
+  margin-top: 0;
+  margin-bottom: 0;
+
+  box-sizing: border-box;
+}
+
+.level-headers-column-cascade-table
+.level-header-mini-li {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.level-headers-column-cascade-table
+.level-header-mini-li::before {
+  top:
+    var(
+      --table-level-row-center,
+      9px
+    );
+}
+
+.level-headers-column-cascade-table
+.level-header-anchor {
+  top:
+    var(
+      --table-level-row-center,
+      9px
+    );
+}
+
+
+/* =========================================================
+   Ширина линий каскадных заголовков
+   повторяет ширину линий структуры
+========================================================= */
+
+/*
+  Отступ до следующего заголовка
+  изменяется вместе с длиной линии.
+*/
+
+.level-headers-cascade-schema
+.level-header-mini-li
+> .level-header-mini-tree {
+  padding-left:
+    var(
+      --level-indent,
+      var(--text-indent)
+    );
+}
+
+/*
+  Горизонтальная линия перед заголовком.
+*/
+
+.level-headers-cascade-schema
+.level-header-mini-li::before {
+  left:
+    calc(
+      0px -
+      var(
+        --level-branch-len,
+        var(--branch-len)
+      )
+    );
+
+  width:
+    var(
+      --level-branch-len,
+      var(--branch-len)
+    );
+}
+
+/*
+  Вертикальная часть каскада остаётся
+  в точке начала горизонтальной линии.
+*/
+
+.level-headers-cascade-schema
+.level-header-mini-li:has(
+  > .level-header-mini-tree
+  > .level-header-mini-li
+)
+> .level-header-mini-tree::before {
+  left:
+    calc(
+      var(
+        --level-indent,
+        var(--text-indent)
+      )
+      -
+      var(
+        --level-branch-len,
+        var(--branch-len)
+      )
+    );
+}

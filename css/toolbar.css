@@ -1,0 +1,250 @@
+/* =========================
+   Toolbar
+   ========================= */
+
+   .hint {
+    grid-row: 1;
+  
+    display: flex;
+    align-items: center;
+  
+    height: 84px;
+  
+    padding-left: 63px;
+    padding-top: 21px;
+    padding-bottom: 21px;
+  
+    margin: 0;
+
+    box-sizing: border-box;
+  
+    font-size: 12px;
+      position: relative;
+  z-index: 30;
+
+  background: #fff;
+
+
+  }
+  
+  .hint button svg {
+    width: 13px;
+    height: 12px;
+  
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* =========================
+     Common toolbar buttons
+     ========================= */
+  
+  .btnn {
+    display: inline-block;
+  
+    height: 21px;
+  
+    padding: 2px 6px;
+    margin: 0;
+  
+    border: 1px solid #757575;
+    border-radius: 2px;
+  
+    background-color: #eee;
+    color: #000;
+  
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .btnn:hover {
+    background-color: var(--hover-color);
+  }
+  
+  .btnn:active {
+    background-color: #cecece;
+  }
+  
+  .btnn.is-active,
+  .formatblock .btnn.active {
+    background-color: #dcdcdc;
+    text-shadow: 0.5px 0 0 currentColor;
+  }
+  
+  .btnn:disabled {
+    color: var(--no-activ-color);
+    border-color: #b5b5b5;
+    background-color: #eee;
+  }
+  
+  .is-inactive {
+    background: #f0f0f0;
+    color: #777;
+  
+    height: 21px;
+  
+    border: 1px solid grey;
+    border-radius: 2px;
+  
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.8;
+  }
+  
+  .is-inactive:hover,
+  .is-inactive:active {
+    background: #e0e0e0;
+  }
+
+  #fmtBold.active{
+    font-weight: normal;
+  }
+
+  /* =========================
+   View switchers
+   ========================= */
+
+.view-switcher {
+    display: inline-flex;
+  }
+  
+  .view-switcher .btnn {
+    margin: 0;
+    border-radius: 0;
+  }
+  
+  .view-switcher .btnn:not(:first-child) {
+    margin-left: -1px;
+  }
+  
+  .view-switcher .btnn:last-child {
+    border-radius: 0 2px 2px 0;
+  }
+  
+  .hierarchy-orientation-switcher {
+    display: inline-flex;
+    margin-left: 21px;
+    margin-right: 21px;
+  }
+  
+  .hierarchy-orientation-switcher .btnn:first-child {
+    border-radius: 2px 0 0 2px;
+  }
+  
+  .hierarchy-orientation-switcher .btnn:last-child {
+    border-radius: 0 2px 2px 0;
+    margin-left: -1px;
+  }
+
+
+  /* =========================
+   Formatting buttons
+   ========================= */
+
+.formatblock button {
+    min-width: 23px;
+  }
+  
+  .formatblock button:nth-child(1) {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  .formatblock button:nth-child(2),
+  .formatblock button:nth-child(3) {
+    border-right: none;
+    border-radius: 0;
+  }
+  
+  .formatblock button:nth-child(4) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .formatblock > .btnn {
+    margin-right: -8px;
+  }
+  
+  .formatblock > .btnn:nth-child(4) {
+    margin-right: 0px;
+  }
+
+
+  /* =========================
+   Toolbar utilities
+   ========================= */
+
+.margin {
+    margin-right: 21px;
+  }
+  
+  .addmargin {
+    margin-right: -8px;
+  }
+  
+  .addmarginsave {
+    margin-right: -1px;
+  }
+  
+  .btn-undo {
+    margin-right: 10px;
+  }
+  
+  .copy {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .copybtnn {
+    padding: 2px 4px;
+  }
+  
+  #tgCopy {
+    display: inline-block;
+    margin-right: 21px;
+    margin-left: 21px;
+  }
+  
+  #tgToggle {
+    margin-left: 21px;
+    margin-right: 21px;
+  }
+  
+  .tgbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .ui-btn-icon {
+    width: 16px;
+    height: 12px;
+  
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  
+    display: inline-block;
+  
+    padding: 4px 5px;
+  
+    background: #f0f0f0;
+    border: 0.5px solid #000;
+    border-radius: 2px;
+  
+    vertical-align: middle;
+  }
+  
+/* Что-то такое у кнопок */
+
+
+  /* новая панесь с цветом */
+
+  .fmt-btn.active {
+    outline: 1px solid #000 !important;
+  }

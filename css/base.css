@@ -1,0 +1,40 @@
+    body { 
+        margin:0; 
+        font-family:Consolas,"Courier New",monospace; 
+        background:#fff; 
+        color:#000; 
+    }
+    
+    :root{
+        --text-indent: 28px;
+        --branch-len:16px;
+        --trunk-shift:-3px;
+  
+        --trunk-company:0px;
+        --trunk-project:12px;
+        --trunk-dept:12px;
+        --trunk-role:12px;
+        --trunk-step:12px;
+  
+        --no-activ-color: #7a7a7a;
+        --hover-color: #e5e5e5;
+        --active-color: #cecece;
+
+        --leftbar-open: 225px;
+        --leftbar-collapsed: 70px;
+    
+        --rightbar-open: 700px;
+        --rightbar-collapsed: 70px;
+      }
+
+      button,
+    button *,
+    .btnn,
+    .btnn *,
+    .formatblock,
+    .formatblock *,
+    .color-tools,
+    .color-tools *{
+    user-select: none;
+    -webkit-user-select: none;
+    }

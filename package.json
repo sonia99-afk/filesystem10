@@ -1,0 +1,12 @@
+{
+  "name": "filesystem9",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Редактор оргструктуры",
+  "scripts": {
+    "audit": "node scripts/audit-project.mjs",
+    "check:syntax": "node scripts/check-syntax.mjs",
+    "test": "node --test",
+    "check": "npm run check:syntax && npm run audit && npm test"
+  }
+}

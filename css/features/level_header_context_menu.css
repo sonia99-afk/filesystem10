@@ -1,0 +1,46 @@
+/* ПКМ заголовка уровня */
+
+.level-header-context-menu {
+  position: fixed;
+  z-index: 16000;
+  display: none;
+  min-width: 245px;
+}
+
+.level-header-context-menu.is-open {
+  display: block;
+}
+
+.level-header-context-title:not(:first-child) {
+  margin-top: 6px;
+}
+
+.level-header-item.is-level-header-context-target,
+.level-header-mini-item.is-level-header-context-target,
+.level-header-column-item.is-level-header-context-target {
+  background: #e5e5e5;
+}
+
+/* SVG-иконки контекстного меню заголовка уровня */
+
+.level-header-context-menu
+.level-header-context-icon {
+  flex: 0 0 20px;
+
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+}
+
+.level-header-context-menu
+.level-header-context-icon-image {
+  display: block;
+
+  width: 14px;
+  height: 14px;
+
+  object-fit: contain;
+
+  pointer-events: none;
+  user-select: none;
+}

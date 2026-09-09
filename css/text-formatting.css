@@ -1,0 +1,29 @@
+.rt-b{ font-weight:700; }
+.rt-i{ font-style:italic; }
+.rt-u{ text-decoration:underline; }
+.rt-s{ text-decoration:line-through; }
+.rt-u.rt-s{ text-decoration: underline line-through; }
+
+.row .label {
+    display: inline;
+  }
+  
+  .row.fmt-b .label {
+    font-weight: 700;
+  }
+  
+  .row.fmt-i .label {
+    font-style: italic;
+  }
+  
+  .row.fmt-u .label {
+    text-decoration: underline;
+  }
+  
+  .row.fmt-s .label {
+    text-decoration: line-through;
+  }
+  
+  .row.fmt-u.fmt-s .label {
+    text-decoration: underline line-through;
+  }

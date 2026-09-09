@@ -1,0 +1,24 @@
+.drop-preview-overlay{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:10000;
+    display:none;
+  }
+  
+  .drop-preview-h,
+  .drop-preview-v{
+    position:fixed;
+    pointer-events:none;
+    box-sizing:border-box;
+  }
+  
+  .drop-preview-h{
+    height:0;
+    border-top:1px dashed #5D5D5D;
+  }
+  
+  .drop-preview-v{
+    width:0;
+    border-left:1px dashed #5D5D5D;
+  }

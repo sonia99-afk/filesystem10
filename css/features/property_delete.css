@@ -1,0 +1,65 @@
+.property-delete-backdrop {
+  position: fixed;
+  inset: 0;
+
+  z-index: 15000;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(0, 0, 0, 0.22);
+}
+
+.property-delete-backdrop.is-open {
+  display: flex;
+}
+
+.property-delete-modal {
+  width: min(
+    420px,
+    calc(100vw - 32px)
+  );
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+
+  background: #fff;
+
+  box-shadow:
+    0 16px 40px
+    rgba(0, 0, 0, 0.16);
+}
+
+.property-delete-title {
+  margin-bottom: 10px;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.property-delete-text {
+  color: #555;
+
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.property-delete-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+
+  margin-top: 20px;
+}
+
+.property-delete-confirm {
+  background: #111;
+  color: #fff;
+}

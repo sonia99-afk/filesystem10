@@ -1,0 +1,166 @@
+/* Затемнение */
+
+.table-column-width-backdrop {
+z-index: 99999;
+background: rgba(0, 0, 0, 0.08);
+}
+
+.table-column-width-backdrop[hidden] {
+display: none !important;
+}
+
+/* Модальное окно */
+
+.table-column-width-modal {
+display: flex;
+flex-direction: column;
+width: min(390px, calc(100vw - 32px));
+height: auto !important;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+
+padding: 18px;
+box-sizing: border-box;
+overflow: visible;
+}
+
+/* Заголовок */
+
+.table-column-width-title {
+margin: 0 0 14px;
+font-size: 16px;
+font-weight: 700;
+}
+
+/* Основная часть */
+
+.table-column-width-body {
+display: flex;
+flex: 0 0 auto;
+flex-direction: column;
+gap: 10px;
+margin: 0 0 18px;
+font-size: 13px;
+
+}
+
+.table-column-width-pixels {
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
+
+.table-column-width-option {
+display: flex;
+align-items: center;
+gap: 12px;
+cursor: pointer;
+}
+
+/* Круги */
+
+
+/* Поле ввода */
+
+.table-column-width-input {
+display: block;
+width: calc(100% - 26px);
+height: 22px;
+margin: 4px 0 0 26px;
+padding: 2px 7px;
+box-sizing: border-box;
+border: 1px solid #757575;
+border-radius: 2px;
+background: #fff;
+color: #111;
+font: inherit;
+font-size: 13px;
+line-height: 1;
+appearance: textfield;
+-moz-appearance: textfield;
+}
+
+.table-column-width-input::placeholder {
+color: #888;
+opacity: 1;
+}
+
+.table-column-width-input::-webkit-inner-spin-button,
+.table-column-width-input::-webkit-outer-spin-button {
+margin: 0;
+appearance: none;
+-webkit-appearance: none;
+}
+
+.table-column-width-input:focus {
+border-color: #555;
+outline: none;
+box-shadow: 0 0 0 1px #555;
+}
+
+.table-column-width-input:disabled {
+border-color: #bbb;
+background: #f3f3f3;
+color: #888;
+}
+
+/* Ошибка */
+
+.table-column-width-error {
+margin-left: 42px;
+color: #b42318;
+font-size: 14px;
+}
+
+/* Кнопки */
+
+.table-column-width-modal .property-delete-actions {
+display: flex;
+justify-content: flex-end;
+gap: 20px;
+margin-top: 0;
+}
+
+/* Адаптация */
+
+@media (max-width: 620px) {
+.table-column-width-modal {
+min-height: 0;
+padding: 22px 20px;
+}
+
+.table-column-width-title {
+margin-bottom: 24px;
+font-size: 19px;
+}
+
+.table-column-width-body {
+font-size: 16px;
+}
+
+
+
+
+}
+
+
+/* Нативный input отвечает за выбор,
+   но визуально используется общий компонент */
+
+.table-column-width-native-radio {
+position: absolute;
+width: 1px;
+height: 1px;
+margin: 0;
+padding: 0;
+overflow: hidden;
+opacity: 0;
+clip-path: inset(50%);
+pointer-events: none;
+}
+
+.table-column-width-native-radio:focus-visible
++ .table-column-width-radio {
+outline: 1px solid #777;
+outline-offset: 2px;
+}

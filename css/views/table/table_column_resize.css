@@ -1,0 +1,656 @@
+/* =========================================================
+   Изменение ширины колонок таблицы
+   ========================================================= */
+
+/*
+  После создания colgroup таблица должна
+  работать в fixed-layout.
+
+  Именно это позволяет колонке стать
+  уже находящегося внутри содержимого.
+*/
+
+#tree
+.structure-table.table-column-widths-active {
+  table-layout: fixed !important;
+
+  min-width: 0 !important;
+  max-width: none;
+}
+
+
+/*
+  Базовый table_base.css задаёт всем
+  ячейкам min-width: 90px.
+
+  Специальные CSS-файлы также задают
+  отдельным ячейкам 110px, 150px,
+  170px и другие значения.
+
+  При активном colgroup они не должны
+  управлять шириной колонки.
+*/
+
+#tree
+.structure-table.table-column-widths-active
+th,
+
+#tree
+.structure-table.table-column-widths-active
+td {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+
+/* =========================================================
+   Заголовок
+   ========================================================= */
+
+#tree
+.structure-table.table-column-widths-active
+th {
+  position: relative;
+
+  overflow: visible;
+}
+
+
+/*
+  Обрезаем только текст заголовка.
+
+  Сам th остаётся overflow: visible,
+  потому что ручка слегка выходит
+  за правую границу.
+*/
+
+#tree
+.structure-table.table-column-widths-active
+.table-column-header-label {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   Содержимое обычных ячеек
+   ========================================================= */
+
+/*
+  В прототипе td обрезает содержимое.
+
+  Кнопки, изображения, файлы и таймеры
+  могут оставаться физически шире,
+  но визуально не выходят в соседнюю колонку.
+*/
+
+#tree
+.structure-table.table-column-widths-active
+tbody td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/*
+  Выпадающие списки в текущем проекте
+  находятся внутри td.
+
+  Им сохраняем прежний overflow: visible,
+  чтобы меню продолжало работать.
+*/
+
+#tree
+.structure-table.table-column-widths-active
+tbody td.table-dropdown-cell,
+
+#tree
+.structure-table.table-column-widths-active
+tbody td.table-compact-select-cell,
+
+#tree
+.structure-table.table-column-widths-active
+tbody td.table-tag-compact-cell {
+  overflow: visible !important;
+}
+
+
+/*
+  Окно сессий таймера тоже должно
+  выходить за границы ячейки.
+
+  В закрытом состоянии сам таймер
+  обрезается по ширине колонки.
+*/
+
+#tree
+.structure-table.table-column-widths-active
+tbody td:has(.table-time-sessions) {
+  overflow: visible !important;
+}
+
+
+/* =========================================================
+   Ручка изменения ширины
+   ========================================================= */
+
+#tree
+.structure-table
+.table-column-resize-handle {
+  position: absolute;
+
+  z-index: 30;
+
+  top: -1px;
+  right: -6px;
+  bottom: -1px;
+
+  width: 12px;
+
+  cursor: col-resize;
+  touch-action: none;
+}
+
+#tree
+.structure-table
+.table-column-resize-handle::after {
+  content: "";
+
+  position: absolute;
+
+  top: 3px;
+  bottom: 3px;
+  left: 50%;
+
+  width: 3px;
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  transform: translateX(-50%);
+
+  pointer-events: none;
+}
+
+#tree
+.structure-table
+.table-column-resize-handle:hover::after,
+
+#tree
+.structure-table
+.table-column-resize-handle.is-active::after {
+  background: #111;
+}
+
+body.table-column-resizing,
+body.table-column-resizing * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   Все выпадающие ячейки
+
+   Иконка / Тег / Приоритет / Фокус / Статус
+   ========================================================= */
+
+/*
+  Сама td остаётся overflow: visible,
+  потому что меню расположено внутри неё.
+
+  Закрытое содержимое обрезаем
+  на уровне общего control-контейнера.
+*/
+
+#tree
+.structure-table.table-column-widths-active
+.table-dropdown-cell-control {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/*
+  Контейнер режима редактирования
+  тоже должен сжиматься до ширины колонки.
+*/
+
+#tree
+.structure-table.table-column-widths-active
+.table-dropdown-cell-control
+.table-tag-compact-editor {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  box-sizing: border-box;
+}
+
+
+/*
+  Значение, которое видно в обычном состоянии.
+*/
+
+#tree
+.structure-table.table-column-widths-active
+.table-dropdown-cell-control
+.table-tag-compact-view,
+
+#tree
+.structure-table.table-column-widths-active
+.table-dropdown-cell-control
+.table-compact-select-view {
+  
+
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/*
+  Кнопка, которая отображается
+  после активации выпадающей ячейки.
+*/
+
+#tree
+.structure-table.table-column-widths-active
+.table-dropdown-cell-control
+.table-tag-compact-trigger {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/*
+  Когда список открыт, меню должно свободно
+  выходить за границы узкой колонки.
+*/
+
+#tree
+.structure-table.table-column-widths-active
+.table-dropdown-cell-control.is-menu-open {
+  overflow: visible;
+}
+
+
+/*
+  Само меню не должно сжиматься
+  до 25 пикселей вместе с колонкой.
+*/
+
+#tree
+.structure-table.table-column-widths-active
+.table-dropdown-cell-control
+.table-tag-compact-menu {
+  min-width: max(100%, 120px) !important;
+  max-width: none !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+
+
+
+
+
+/* =========================================================
+   Многоточие для конкретных текстовых колонок
+
+   Применяется к:
+   - ID
+   - Нумерация
+   - Название
+   - Описание
+   - Текст
+   - Дата начала
+   - Время начала
+   - Дата завершения
+   - Время завершения
+   - Дата и время начала
+   - Дата и время завершения
+   - Диапазон дат
+   - Диапазон времени
+   - Полный диапазон даты и времени
+
+   Не затрагивает:
+   - загрузку изображений и файлов
+   - счётчик времени
+   - время таймера
+   - оставшееся время
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Сами нужные ячейки должны разрешать содержимому сжиматься
+   --------------------------------------------------------- */
+
+#tree
+.structure-table.table-column-widths-active
+td.table-id-cell,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-ordinal-cell,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-name-cell,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-notes-cell,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-rich-text-cell,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-direct-cell[data-editor-type="date"],
+
+#tree
+.structure-table.table-column-widths-active
+td.table-direct-cell[data-editor-type="time"],
+
+#tree
+.structure-table.table-column-widths-active
+td.table-date-range-cell,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-time-range-cell,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-datetime-cell,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-full-datetime-range-cell {
+  min-width: 0 !important;
+  max-width: none !important;
+
+  overflow: hidden !important;
+}
+
+
+/* ---------------------------------------------------------
+   ID и нумерация
+   --------------------------------------------------------- */
+
+#tree
+.structure-table.table-column-widths-active
+td.table-id-cell
+> .table-cell-value,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-ordinal-cell
+> .table-cell-value {
+  display: block !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  height: 22px;
+  min-height: 22px;
+
+  box-sizing: border-box;
+
+  line-height: 22px;
+
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+
+/* ---------------------------------------------------------
+   Название
+   --------------------------------------------------------- */
+
+#tree
+.structure-table.table-column-widths-active
+td.table-name-cell
+> .table-name-cell-label,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-name-cell
+> .label {
+  display: block !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  height: 22px;
+  min-height: 22px;
+
+  box-sizing: border-box;
+
+  line-height: 22px;
+
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+
+/* ---------------------------------------------------------
+   Описание и текст
+   --------------------------------------------------------- */
+
+#tree
+.structure-table.table-column-widths-active
+td.table-notes-cell
+> .table-rich-cell-value,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-rich-text-cell
+> .table-rich-cell-value {
+  display: block !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
+
+  box-sizing: border-box;
+
+  line-height: 22px;
+
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: pre !important;
+overflow-wrap: normal !important;
+word-break: normal !important;
+}
+
+
+/*
+  В rich-text могут находиться <br>.
+  В обычном просмотре они мешают однострочному
+  многоточию, поэтому скрываем их.
+
+  Редактор это правило не затрагивает.
+*/
+
+#tree
+.structure-table.table-column-widths-active
+td.table-notes-cell
+> .table-rich-cell-value
+br,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-rich-text-cell
+> .table-rich-cell-value
+br {
+  display: initial !important;
+}
+
+
+/* ---------------------------------------------------------
+   Одиночные дата и время
+
+   Дата начала
+   Время начала
+   Дата завершения
+   Время завершения
+   --------------------------------------------------------- */
+
+#tree
+.structure-table.table-column-widths-active
+td.table-direct-cell[data-editor-type="date"]
+> .table-cell-value,
+
+#tree
+.structure-table.table-column-widths-active
+td.table-direct-cell[data-editor-type="time"]
+> .table-cell-value {
+  display: block !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  height: 22px;
+  min-height: 22px;
+
+  box-sizing: border-box;
+
+  line-height: 22px;
+
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+
+/* ---------------------------------------------------------
+   Контейнеры объединённых даты и времени
+   --------------------------------------------------------- */
+
+#tree
+.structure-table.table-column-widths-active
+.table-composite-datetime-control,
+
+#tree
+.structure-table.table-column-widths-active
+.table-range-control,
+
+#tree
+.structure-table.table-column-widths-active
+.table-datetime-control,
+
+#tree
+.structure-table.table-column-widths-active
+.table-full-datetime-range-control {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box;
+}
+
+
+/* ---------------------------------------------------------
+   Отображаемое значение объединённых колонок
+
+   Дата и время начала
+   Дата и время завершения
+   Диапазон дат
+   Диапазон времени
+   Полный диапазон даты и времени
+   --------------------------------------------------------- */
+
+#tree
+.structure-table.table-column-widths-active
+.table-composite-datetime-view,
+
+#tree
+.structure-table.table-column-widths-active
+.table-range-view,
+
+#tree
+.structure-table.table-column-widths-active
+.table-datetime-view,
+
+#tree
+.structure-table.table-column-widths-active
+.table-full-datetime-range-view {
+  display: block !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  height: 22px;
+  min-height: 22px;
+  max-height: 22px;
+
+  box-sizing: border-box;
+
+  line-height: 22px;
+
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+
+
+
+
+
+
+
+

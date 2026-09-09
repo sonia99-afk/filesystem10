@@ -1,0 +1,91 @@
+/* =========================================================
+   Перемещение колонок таблицы
+   ========================================================= */
+
+/*
+  Индикатор вставки располагается относительно
+  всей области таблицы, а не отдельного th.
+*/
+
+#tree .table-view {
+  position: relative;
+}
+
+
+/* Заголовок можно перетаскивать */
+
+#tree
+.structure-table
+th[data-table-column-key] {
+  cursor: grab;
+  user-select: none;
+}
+
+
+/*
+  Resize-ручка сохраняет собственный курсор.
+*/
+
+#tree
+.structure-table
+th[data-table-column-key]
+.table-column-resize-handle {
+  cursor: col-resize;
+}
+
+
+/* Перемещаемый заголовок */
+
+#tree
+.structure-table
+th.table-column-dragging {
+  opacity: 0.42;
+}
+
+
+/* =========================================================
+   Единая вертикальная линия вставки
+   ========================================================= */
+
+#tree
+.table-column-drop-indicator {
+  position: absolute;
+
+  z-index: 80;
+
+  display: none;
+
+  top: 0;
+  left: 0;
+
+  width: 2px;
+  height: 0;
+
+  box-sizing: border-box;
+
+  background: #111;
+
+  transform: translateX(-50%);
+
+  pointer-events: none;
+}
+
+
+/*
+  В DOM всегда находится только одна линия.
+  При движении меняется лишь её left.
+*/
+
+#tree
+.table-column-drop-indicator.is-visible {
+  display: block;
+}
+
+
+/* Единый курсор на время перемещения */
+
+body.table-column-reordering,
+body.table-column-reordering * {
+  cursor: grabbing !important;
+  user-select: none !important;
+}

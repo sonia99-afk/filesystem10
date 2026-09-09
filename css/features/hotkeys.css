@@ -1,0 +1,340 @@
+/* =========================
+   Hotkeys panel
+   ========================= */
+
+   .panel-title {
+    font-weight: 700;
+ 
+  }
+  
+  .panel-note {
+    margin-top: 10px;
+    font-size: 12px;
+    opacity: .8;
+  }
+  
+  .hotkeys {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+
+    background: #fff;
+  }
+  
+  .hotkeys th,
+  .hotkeys td {
+    border: 1px solid #000;
+    padding: 6px 8px;
+    vertical-align: top;
+    background: #fff;
+  }
+  
+  .hotkeys th {
+    text-align: left;
+  }
+
+  
+  kbd {
+    display: inline-block;
+    padding: 1px 6px;
+    border: 1px solid #000;
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    font-size: 11px;
+    line-height: 1.4;
+    background: #fff;
+  }
+
+  /* =========================
+   Hotkeys editing state
+   ========================= */
+
+td.editing {
+    background: #fff3cd !important;
+    border: 2px dashed #333;
+  }
+  
+  td.conflict {
+    border: 2px solid #e53935 !important;
+  }
+  
+  body.hotkeys-edit-mode #tree .label {
+    color: var(--no-activ-color);
+  }
+  
+  body.hotkeys-edit-mode #tree li::before {
+    border-top-color: var(--no-activ-color);
+  }
+  
+  .hotkeys td[data-action] {
+    position: relative;
+    padding-right: 24px;
+  }
+
+
+  /* =========================
+   Hotkeys clear button
+   ========================= */
+
+.hk-clear {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+  
+    transform: translateY(-50%);
+  
+    width: 14px;
+    height: 14px;
+  
+    line-height: 12px;
+    text-align: center;
+  
+    border: 1px solid transparent;
+    border-radius: 2px;
+  
+    cursor: pointer;
+  
+    opacity: 0;
+    pointer-events: none;
+  
+    font-size: 12px;
+    color: #666;
+    background: #fff;
+  }
+  
+  .hotkeys td[data-action]:hover .hk-clear {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .hk-clear:hover {
+    border-color: #999;
+    color: #000;
+    background: #f3f3f3;
+  }
+
+
+  /* =========================
+   Hotkeys edit buttons
+   ========================= */
+
+.hk-btns {
+    display: inline-flex;
+    gap: 0;
+  }
+  
+  .hk-btns > button {
+    margin: 0;
+  }
+  
+  .hkSaveBtn,
+  .hkDiscardBtn {
+    height: 21px;
+    background: #f0f0f0;
+    cursor: pointer;
+    border: 1px solid gray;
+  }
+  
+  .hkSaveBtn {
+    border-radius: 2px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  .hkDiscardBtn {
+    border-radius: 2px;
+    border-left: none !important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .hkSaveBtn:hover,
+  .hkDiscardBtn:hover {
+    background: #e6e6e6;
+  }
+  
+  #hkSaveBtn {
+    margin-left: 10px;
+  }
+  
+  #hotkeysResetBtn {
+    margin-left: 92px;
+  }
+
+  /* =========================
+   Hotkeys exit modal
+   ========================= */
+
+.hk-exit-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    background: rgba(0, 0, 0, 0.08);
+  }
+  
+  .hk-exit-modal {
+    width: 390px;
+    padding: 18px;
+    box-sizing: border-box;
+  
+    background: #fff;
+  
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+  
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16);
+  }
+  
+  .hk-exit-modal-title {
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  
+  .hk-exit-modal-text {
+    font-size: 13px;
+    line-height: 1.35;
+    margin-bottom: 18px;
+  }
+  
+  .hk-exit-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .hk-stay {
+    margin-right: 10px;
+    margin-left: 92px;
+  }
+
+  /* =========================
+   Единая сетка таблиц хоткеев
+   ========================= */
+
+.hotkeys-panel-scroll {
+  /*
+    Ширина всех секций определяется самой широкой таблицей.
+    Горизонтальная прокрутка принадлежит общему контейнеру.
+  */
+  overflow-x: auto;
+}
+
+.hotkeys-section {
+  /*
+    Одинаковая ширина всех секций и их заголовков.
+  */
+  width: 850px;
+  min-width: 850px;
+  box-sizing: border-box;
+}
+
+.hotkeys-section + .hotkeys-section {
+  margin-top: 20px;
+}
+
+.hotkeys-aligned {
+  width: 850px;
+  min-width: 850px;
+
+  table-layout: fixed;
+  border-collapse: collapse;
+  box-sizing: border-box;
+}
+
+/* 1. Основной раздел:
+   Выбор, Мультивыбор, Редактирование и т. д. */
+.hotkeys-aligned .hotkeys-col-section {
+  width: 110px;
+}
+
+/* 2. Подраздел:
+   По дереву, По уровню, Фона, Текста и т. д. */
+.hotkeys-aligned .hotkeys-col-subsection {
+  width: 105px;
+}
+
+/* 3. Название функции */
+.hotkeys-aligned .hotkeys-col-function {
+  width: 120px;
+}
+
+/* 4. Описание */
+.hotkeys-aligned .hotkeys-col-description {
+  width: 120px;
+}
+
+/* 5. Клавиатура */
+.hotkeys-aligned .hotkeys-col-keyboard {
+  width: 165px;
+}
+
+/* 6. Мышь */
+.hotkeys-aligned .hotkeys-col-mouse {
+  width: 160px;
+}
+
+/* 7. Интерфейс */
+.hotkeys-aligned .hotkeys-col-interface {
+  width: 130px;
+}
+
+.hotkeys-aligned th,
+.hotkeys-aligned td {
+  box-sizing: border-box;
+
+  /*
+    Длинные названия не растягивают отдельную таблицу.
+  */
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.hotkeys-navigation-controls {
+  text-align: left;
+}
+
+
+.hotkeys-view-unavailable td {
+  background: #f2f2f2;
+  color: #999;
+}
+
+.hotkeys-disabled-cell {
+  background: #f2f2f2;
+  color: #999;
+  cursor: default;
+  user-select: none;
+}
+
+
+.hotkeys-group-labels {
+  display: grid;
+
+  grid-template-columns:
+    58px
+    115px
+    110px
+    80px;
+
+  gap: 0;
+
+  margin-top: 10px;
+}
+
+.hotkeys-group-label-col {
+  color: #8a8a8a;
+  font-size: 9px;
+}
+
+.hotkeys-group-label-col > div {
+  margin-bottom: 2px;
+}
+
+.hotkeys-group-label-col.is-active {
+  color: #222222;
+  font-weight: 700;
+}

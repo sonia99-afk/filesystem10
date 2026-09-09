@@ -1,0 +1,102 @@
+#tree {
+  position: relative;
+}
+
+#tree .collapse-col {
+  font-size: 12px !important;
+  position: absolute;
+  left: -20px;
+
+  width: 28px;
+  height: 20px;
+
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+
+  color: #6b7280;
+  font: inherit;
+  line-height: 20px;
+  text-align: right;
+
+  user-select: none;
+  cursor: pointer;
+  z-index: 30;
+}
+
+#tree .collapse-col:hover {
+  color: black;
+}
+
+#tree .collapse-col {
+  opacity: 0;
+}
+
+#tree .collapse-col.is-visible,
+#tree .collapse-col:hover {
+  opacity: 1;
+}
+
+#tree .collapse-col.is-collapsed {
+  opacity: 1;
+}
+
+.level-collapse-bar {
+  position: relative;
+  display: flex;
+  top: -15px;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.level-collapse-btn:hover {
+  color: black;
+}
+
+.level-collapse-btn {
+  font-size: 12px !important;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+
+  font: inherit;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+/* =========================================================
+   Раздельные колонки управления объектами
+
+   Левая колонка:
+   - скрыть;
+   - показать.
+
+   Правая колонка:
+   - свернуть;
+   - развернуть.
+
+   Правила ограничены обычной Структурой,
+   поэтому Структура + Таблица не изменяется.
+========================================================= */
+
+/*
+  Новое расположение применяется только
+  к отдельному виду «Структура».
+*/
+
+body.view-schema:not(.view-structure-table):not(.view-table)
+#tree .object-hide-col {
+  
+  width: 20px;
+  height: 20px;
+}
+
+body.view-schema:not(.view-structure-table):not(.view-table)
+#tree .collapse-col {
+  
+  width: 20px;
+  height: 20px;
+}
+

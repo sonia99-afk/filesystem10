@@ -1,0 +1,167 @@
+.mark-tools{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    margin-left:21px;
+    margin-right:21px;
+  }
+  .mark-tools .btnn{
+    margin:0;
+  }
+  .mark-toggle{
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+  }
+  .mark-settings-btn{
+    min-width:31px;
+    border-left:none !important;
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
+    font-size:14px;
+    line-height:14px;
+  }
+  .mark-settings-menu{
+    display:none;
+    position:absolute;
+    left:95%;
+    top:12px;
+    width:161px;
+    z-index:9999;
+    border:1px solid #b8b8b8;
+    border-radius:9px;
+    background:#fff;
+    box-shadow:0 4px 18px rgba(0,0,0,.12);
+    overflow:hidden;
+    
+    font-size:12px;
+  }
+  .mark-settings-menu.is-open{
+    display:block;
+  }
+
+  .mark-settings-title{
+    padding-top:8px;
+    padding-left:16px;
+    /* height:16px; */
+    color:#7a7a7a;
+    font-weight:700;
+    font-size:10px;
+  }
+  .mark-settings-item{
+    padding-bottom:0;
+    padding-top:0;
+    display:flex;
+    align-items:center;
+    width:100%;
+    border:none;
+    background:#fff;
+    color:#000;
+    height:28px;
+    font:inherit;
+    text-align:left;
+    cursor:pointer;
+    padding-left:16px;
+  }
+  
+  .mark-settings-item:last-child{
+      margin-bottom:8px;
+      
+  }
+  
+  
+  .mark-settings-item:hover,
+  .mark-settings-item.is-active{
+    background: var(--hover-color);
+  }
+  .mark-settings-icon{
+    width:32px;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    color:#666;
+  }
+  .mark-settings-item[data-mark-mode="strike"] .mark-settings-icon{
+    font-family:Georgia, serif;
+  }
+  .mark-dot{
+    width:14px;
+    height:14px;
+    flex:0 0 14px;
+    display:inline-block;
+    box-sizing:border-box;
+    padding:0;
+    margin:0px 7px 0 0;
+    border:1px solid #000;
+    border-radius:50%;
+    background:transparent;
+    cursor:pointer;
+    
+  }
+  .mark-dot.is-marked{
+    background:radial-gradient(circle at center, #5e5e5e 0 52%, transparent 56% 100%);
+  }
+  .row .mark-dot:hover{
+    box-shadow:0 0 0 2px rgba(0,0,0,.10);
+  }
+  .hierarchy-node .mark-dot,
+  .hierarchy-horizontal-node .mark-dot,
+  .icicle-horizontal-node .mark-dot,
+  .icicle-vertical-node .mark-dot,
+  .leaf-node .mark-dot{
+    margin-right:6px;
+  }
+  .structure-table .mark-dot{
+    margin-left:2px;
+  }
+  
+  #tree .row.mark-strike-object .label,
+  #tree .row.mark-strike-object .ordinal-badge,
+  #tree .captions.mark-strike-object .caption{
+    text-decoration:line-through;
+  }
+  
+  #tree .row.mark-strike-object .edit,
+  #tree .captions.mark-strike-object .edit{
+    text-decoration:none;
+  }
+  
+  .structure-table tr.mark-strike-object td:not(.table-mark-cell){
+    text-decoration:line-through;
+  }
+  
+  .structure-table tr.mark-strike-object .mark-dot{
+    text-decoration:none;
+  }
+  
+  #tree li.mark-hidden-object{
+    height:0 !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow:hidden !important;
+  }
+  
+  #tree li.mark-hidden-object::before{
+    display:none !important;
+  }
+  
+#tree li.mark-hidden-object > .row,
+#tree li.mark-hidden-object > .captions,
+#tree li.mark-hidden-object > .schema-text-properties,
+#tree li.mark-hidden-object > .schema-active-block,
+#tree li.mark-hidden-object > ul {
+  display: none !important;
+}
+  
+  .structure-table tr.mark-hidden-object{
+    display:none;
+  }
+  
+  .row.mark-row.is-marked-object > .ordinal-badge,
+  .row.mark-row.is-marked-object > .label{
+      opacity: 0.5;
+  }
+  
+  .row.mark-row.is-marked-object + .captions .caption{
+    opacity:0.5;
+  }

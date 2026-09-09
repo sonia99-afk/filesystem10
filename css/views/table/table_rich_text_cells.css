@@ -1,0 +1,238 @@
+/* =========================
+   Table rich-text cells
+   Description / Text
+   ========================= */
+
+.structure-table td.table-rich-text-cell,
+.structure-table td.table-notes-cell {
+  position: relative;
+  min-width: 180px;
+  max-width: 320px;
+  white-space: normal;
+}
+
+.structure-table .table-rich-cell-value {
+  min-height: 22px;
+  width: 100%;
+  box-sizing: border-box;
+
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.structure-table .table-rich-cell-value.is-empty::before {
+  content: "";
+}
+
+/* =========================================================
+   Расширенный редактор текстовой ячейки
+========================================================= */
+
+/*
+  Исходная ячейка сохраняет свои размеры.
+  Редактор находится в body и таблицу
+  не растягивает.
+*/
+
+.structure-table
+td.table-rich-cell-editing {
+  position: relative;
+}
+
+/*
+  Редактор поверх таблицы,
+  как в прототипе и Google Таблицах.
+*/
+
+.table-rich-cell-overlay-editor,
+.table-rich-cell-overlay-editor.edit.edit-rich {
+  position: fixed !important;
+  z-index: 4500;
+
+  display: block !important;
+
+  min-width: 0 !important;
+  max-width: none !important;
+
+  min-height: 0 !important;
+  max-height: none !important;
+
+  margin: 0 !important;
+  padding: 4px 6px !important;
+
+  box-sizing: border-box !important;
+
+  border: 2px solid #1a73e8 !important;
+  border-radius: 0 !important;
+  outline: none !important;
+
+  background: #fff !important;
+  color: #000 !important;
+
+  box-shadow:
+    0 1px 3px
+    rgba(0, 0, 0, 0.16);
+
+  white-space: pre !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  text-overflow: clip !important;
+
+  resize: none;
+
+  cursor: text;
+  user-select: text;
+
+  caret-color: #000;
+}
+
+/* Старые plain/builtin value-блоки для ID / Нумерация / Описание */
+.table-id-cell .table-cell-value,
+.table-ordinal-cell .table-cell-value,
+.table-notes-cell .table-cell-value {
+  min-height: 22px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.table-notes-cell .table-cell-value {
+  white-space: pre-wrap;
+}
+
+
+/* =========================================================
+   Настройки высоты и переноса текстовых ячеек
+   ========================================================= */
+
+/*
+  Автоматическая высота включена,
+  перенос по ширине выключен.
+
+  Учитываются только существующие
+  переносы строк.
+*/
+
+#tree
+.structure-table.table-column-widths-active.auto-text-cell-height
+td.table-notes-cell
+> .table-rich-cell-value,
+
+#tree
+.structure-table.table-column-widths-active.auto-text-cell-height
+td.table-rich-text-cell
+> .table-rich-cell-value {
+  height: auto !important;
+  min-height: 22px !important;
+  max-height: none !important;
+
+  white-space: pre !important;
+  overflow-wrap: normal !important;
+
+  overflow: hidden !important;
+  text-overflow: clip !important;
+}
+
+
+/*
+  Возвращаем переносы <br>,
+  которые скрыты в однострочном режиме.
+*/
+
+#tree
+.structure-table.table-column-widths-active.auto-text-cell-height
+td.table-notes-cell
+> .table-rich-cell-value
+br,
+
+#tree
+.structure-table.table-column-widths-active.auto-text-cell-height
+td.table-rich-text-cell
+> .table-rich-cell-value
+br {
+  display: initial !important;
+}
+
+
+/*
+  Автоматическая высота и перенос
+  по ширине одновременно включены.
+*/
+
+#tree
+.structure-table.table-column-widths-active.auto-text-cell-height.wrap-text-by-cell-width
+td.table-notes-cell
+> .table-rich-cell-value,
+
+#tree
+.structure-table.table-column-widths-active.auto-text-cell-height.wrap-text-by-cell-width
+td.table-rich-text-cell
+> .table-rich-cell-value {
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+}
+
+
+/* =========================================================
+   Те же режимы во время редактирования
+   ========================================================= */
+
+/* Автоматическая высота выключена */
+
+#tree
+.structure-table:not(.auto-text-cell-height)
+td.table-notes-cell
+> .table-rich-cell-editor,
+
+#tree
+.structure-table:not(.auto-text-cell-height)
+td.table-rich-text-cell
+> .table-rich-cell-editor {
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
+
+  white-space: pre !important;
+  overflow-wrap: normal !important;
+  overflow: auto !important;
+}
+
+
+/* Автоматическая высота включена */
+
+#tree
+.structure-table.auto-text-cell-height
+td.table-notes-cell
+> .table-rich-cell-editor,
+
+#tree
+.structure-table.auto-text-cell-height
+td.table-rich-text-cell
+> .table-rich-cell-editor {
+  height: auto !important;
+  min-height: 22px !important;
+  max-height: none !important;
+
+  white-space: pre !important;
+  overflow-wrap: normal !important;
+}
+
+
+/* Автоматическая высота и перенос включены */
+
+#tree
+.structure-table.auto-text-cell-height.wrap-text-by-cell-width
+td.table-notes-cell
+> .table-rich-cell-editor,
+
+#tree
+.structure-table.auto-text-cell-height.wrap-text-by-cell-width
+td.table-rich-text-cell
+> .table-rich-cell-editor {
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+  overflow: hidden !important;
+}

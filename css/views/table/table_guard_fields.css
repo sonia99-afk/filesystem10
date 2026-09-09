@@ -1,0 +1,121 @@
+/* =========================================================
+   Охранные поля содержимого таблицы
+========================================================= */
+
+/*
+  Слева 6px получают все заголовки
+  и все ячейки таблицы.
+*/
+
+#tree .structure-table th,
+#tree .structure-table td {
+  box-sizing: border-box;
+  padding-left: 6px !important;
+}
+
+/*
+  Ячейки с кнопками и виджетами
+  получают дополнительное поле справа.
+*/
+
+#tree .structure-table
+td.table-fixed-content-cell {
+  padding-right: 6px !important;
+}
+
+/*
+  До создания colgroup фиксированная
+  колонка измеряется по содержимому
+  вместе с двумя охранными полями.
+
+  После ручного изменения ширины
+  сохранённый размер остаётся главным.
+*/
+
+#tree
+.structure-table:not(
+  .table-column-widths-active
+)
+td.table-fixed-content-cell {
+  width: 1% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+#tree
+.structure-table:not(
+  .table-column-widths-active
+)
+td.table-fixed-content-cell
+> * {
+  width: max-content;
+  max-width: none;
+}
+
+/* =========================================================
+   Колонки по ширине фиксированного содержимого
+========================================================= */
+
+/*
+  Дополнительная гарантия правого
+  охранного поля именно для пяти
+  content-sized колонок.
+*/
+#tree
+.structure-table
+td.table-content-sized-cell {
+  padding-right: 6px !important;
+}
+
+/*
+  Значение уровня теперь находится
+  в отдельном измеряемом элементе.
+*/
+#tree
+.structure-table
+td.table-content-sized-cell
+> .table-fixed-content-value {
+  display: inline-flex;
+  align-items: center;
+
+  width: max-content;
+  min-width: max-content;
+  height: 22px;
+
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   Колонка «Метка»
+========================================================= */
+
+/*
+  У Метки ширина определяется словом
+  в заголовке, а не размером mark-dot.
+
+  Убираем общее минимальное ограничение
+  таблицы в 90px.
+*/
+#tree
+.structure-table:not(
+  .table-column-widths-active
+)
+th[data-table-column-key="setting:marks"] {
+  width: 1% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+/*
+  У заголовка тоже оставляем охранные
+  поля по 6px с обеих сторон.
+*/
+#tree
+.structure-table
+th[data-table-column-key="setting:marks"] {
+  box-sizing: border-box;
+
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+}

@@ -1,0 +1,10 @@
+.mark-settings-item.is-disabled {
+    color: var(--no-activ-color);
+    cursor: default;
+    pointer-events: none;
+  }
+  
+  .mark-settings-item.is-disabled .mark-settings-icon,
+  .mark-settings-item.is-disabled .mark-settings-text {
+    color: var(--no-activ-color);
+  }

@@ -1,0 +1,142 @@
+/* =========================
+   Table base
+   Общий layout таблицы
+   ========================= */
+
+.table-view {
+  min-width: max-content;
+}
+
+/* === Правый запас после таблицы === */
+
+#tree .table-view {
+  display: inline-block;
+  min-width: 100%;
+  padding-right: 63px;
+  box-sizing: content-box;
+}
+
+/* === Base table === */
+
+.structure-table {
+  border-collapse: collapse;
+  background: #fff;
+}
+
+#tree .structure-table {
+  table-layout: auto;
+  width: max-content;
+  min-width: max-content;
+}
+
+.structure-table th,
+.structure-table td {
+  border: 1px solid #cfcfcf;
+  padding: 0;
+  text-align: left;
+  vertical-align: top;
+  min-width: 90px;
+}
+
+#tree .structure-table th,
+#tree .structure-table td {
+  white-space: nowrap;
+}
+
+.structure-table th {
+  font-weight: 700;
+  background: #f7f7f7;
+}
+
+/* === Базовые ширины первых системных колонок === */
+
+/* =========================================================
+   Закреплённая первая строка табличных отображений
+========================================================= */
+
+/*
+  Закрепляется весь настоящий thead,
+  а не отдельные внутренности ячеек.
+
+  Правило работает одновременно:
+  - в обычной таблице;
+  - в «Структура + Таблица».
+*/
+
+body.view-table
+#tree
+.structure-table
+> thead {
+  position: sticky;
+  top: 0;
+  z-index: 70;
+
+  background: #f7f7f7;
+}
+
+/* =========================================================
+   Цельная закреплённая шапка таблицы
+========================================================= */
+
+/*
+  При separate бордеры принадлежат самим
+  ячейкам и перемещаются вместе с thead.
+*/
+
+body.view-table
+#tree
+.structure-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/*
+  Формируем однопиксельную сетку без
+  двойных границ между ячейками.
+*/
+
+body.view-table
+#tree
+.structure-table th,
+
+body.view-table
+#tree
+.structure-table td {
+  border: 0;
+
+  border-right: 1px solid #cfcfcf;
+  border-bottom: 1px solid #cfcfcf;
+}
+
+body.view-table
+#tree
+.structure-table tr
+> :first-child {
+  border-left: 1px solid #cfcfcf;
+}
+
+body.view-table
+#tree
+.structure-table
+> thead
+> tr:first-child
+> th {
+  border-top: 1px solid #cfcfcf;
+}
+
+/*
+  Теперь весь thead закрепляется вместе
+  с собственными фоном и бордерами.
+*/
+
+body.view-table
+#tree
+.structure-table
+> thead {
+  position: sticky;
+  top: -42px;
+
+  z-index: 70;
+
+  background: #f7f7f7;
+}
