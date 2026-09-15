@@ -672,7 +672,13 @@ function handleRowMouseHotkeys(e, n, baseToken) {
     return true;
   }
 
-if (isMouseHotkey(e, "navClick", baseToken)) {
+if (
+  isMouseHotkey(
+    e,
+    "navClick",
+    baseToken
+  )
+) {
   e.preventDefault();
   e.stopPropagation();
 
@@ -680,21 +686,41 @@ if (isMouseHotkey(e, "navClick", baseToken)) {
   treeHasFocus = true;
 
   /*
-    Сначала обновляем структуру.
-    Аргументы render могут теряться в обёртках
-    модулей мультивыделения.
+    В Структуре и
+    Структуре + Таблица
+    при обычном выборе объекта
+    полная перерисовка не нужна.
+
+    Меняем только выделенную строку.
   */
-  render();
+
+  if (
+    currentView ===
+      VIEW.SCHEMA ||
+    currentView ===
+      VIEW.STRUCTURE_TABLE
+  ) {
+    const updated =
+      updateSchemaSelectionWithoutRender();
+
+    if (updated) {
+      window.schemaAutoscroll
+        ?.scrollSelectedIntoView?.({
+          mode: "mouse",
+        });
+
+      return true;
+    }
+  }
 
   /*
-    Затем напрямую запрашиваем мышиный автоскролл.
-    Он получит приоритет над уже запланированным
-    клавиатурным запросом.
+    Fallback для остальных
+    отображений.
   */
-  window.schemaAutoscroll
-    ?.scrollSelectedIntoView?.({
-      mode: "mouse",
-    });
+
+  render({
+    scrollMode: "mouse",
+  });
 
   return true;
 }
@@ -1492,10 +1518,23 @@ window.visibilityControls?.apply(
       window.collapseNodes?.toggle?.(id);
     });
   
-    const rowBox = row.getBoundingClientRect();
-    col.style.top = `${Math.round(rowBox.top - treeBox.top)}px`;
-  
-    controlsHost.appendChild(col);
+    const rowBox =
+  row.getBoundingClientRect();
+
+const controlHeight = 20;
+
+const top =
+  rowBox.top -
+  treeBox.top +
+  (
+    rowBox.height -
+    controlHeight
+  ) / 2;
+
+col.style.top =
+  `${Math.round(top)}px`;
+
+controlsHost.appendChild(col);
   });
 }
 

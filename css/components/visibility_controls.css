@@ -1,136 +1,152 @@
-/* Общие кнопки скрытия и сворачивания */
+/* =========================================================
+   Общие кнопки скрытия и сворачивания
+========================================================= */
 
-.visibility-control {
-display: inline-flex;
-align-items: center;
-justify-content: center;
-flex: 0 0 20px;
-width: 20px;
-min-width: 20px;
-height: 20px;
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-border: 0;
-border-radius: 3px;
-background: transparent;
-color: #6b7280;
-line-height: 1;
-cursor: pointer;
-user-select: none;
-}
+:root {
+  /*
+    Единая боковая сетка.
 
-.visibility-control > svg {
-display: block;
-width: 15px;
-height: 15px;
-fill: none;
-stroke: currentColor;
-stroke-width: 1.4;
-stroke-linecap: round;
-stroke-linejoin: round;
-pointer-events: none;
-}
+    Эталон:
+    «Структура + Таблица».
 
-.visibility-control:hover {
+    Слева направо:
 
-color: #111;
-}
+    -30px — глазик;
+    -20px — восстановление скрытого объекта;
+    -10px — свернуть / развернуть;
+       0px — начало структуры / таблицы.
+  */
 
-.visibility-control:focus {
-outline: none;
-}
+  --visibility-side-hide-left:
+    -40px;
 
-.visibility-control:focus-visible {
-outline: 1px solid #777;
-outline-offset: 1px;
-}
+  --visibility-side-restore-left:
+    -30px;
 
-.visibility-control:disabled,
-.visibility-control.is-disabled {
-background: transparent;
-color: #c7c7c7;
-cursor: default;
-pointer-events: none;
-}
-
-.visibility-control[data-visibility-icon="show"],
-.visibility-control[data-visibility-icon="expand"],
-.visibility-control[data-visibility-icon="restoreVertical"],
-.visibility-control[data-visibility-icon="restoreHorizontal"] {
-color: #555;
-}
-
-/* Верхние кнопки управления уровнями */
-
-#tree
-.level-hide-btn.visibility-control,
-
-#tree
-.level-collapse-btn.visibility-control {
-  display: inline-flex;
-  flex: 0 0 20px;
-
-  width: 20px;
-  min-width: 20px;
-  height: 20px;
-
-  padding: 0;
-  line-height: 1;
+  --visibility-side-collapse-left:
+    -20px;
 }
 
 
 /* =========================================================
-   Три боковые колонки
-
-   1. Свернуть / развернуть.
-   2. Скрыть объект.
-   3. Восстановить скрытый объект.
+   Базовая кнопка
 ========================================================= */
 
-/* Обычная «Структура» */
+.visibility-control {
+  display: inline-flex;
 
-body.view-schema:not(.view-structure-table):not(.view-table)
-#tree .collapse-col {
-  left: -10px !important;
-  
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 20px;
+
+  width: 20px;
+  min-width: 20px;
+
+  height: 20px;
+  min-height: 20px;
+
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  border: 0;
+  border-radius: 3px;
+
+  background: transparent;
+
+  color: #6b7280;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  user-select: none;
 }
 
-body.view-schema:not(.view-structure-table):not(.view-table)
-#tree .object-hide-col:not(.is-hidden-object) {
-  left: -30px !important;
-  
+
+/* =========================================================
+   SVG внутри кнопок
+========================================================= */
+
+.visibility-control > svg {
+  display: block;
+
+  width: 15px;
+  height: 15px;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.4;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  pointer-events: none;
 }
 
-body.view-schema:not(.view-structure-table):not(.view-table)
-#tree .object-hide-col.is-hidden-object {
-  left: -20px !important;
-  
+
+/* =========================================================
+   Состояния
+========================================================= */
+
+.visibility-control:hover {
+  color: #111;
 }
 
-/* «Структура + Таблица» */
-
-body.view-structure-table
-#tree .collapse-col {
-  left: -10px !important;
-  
+.visibility-control:focus {
+  outline: none;
 }
 
-body.view-structure-table
-#tree .object-hide-col:not(.is-hidden-object) {
-  left: -30px !important;
-  
+.visibility-control:focus-visible {
+  outline: 1px solid #777;
+  outline-offset: 1px;
 }
 
-body.view-structure-table
-#tree .object-hide-col.is-hidden-object {
-  left: -20px !important;
-  
+.visibility-control:disabled,
+.visibility-control.is-disabled {
+  background: transparent;
+
+  color: #c7c7c7;
+
+  cursor: default;
+
+  pointer-events: none;
 }
+
+
+/* =========================================================
+   Цвет активных обратных действий
+========================================================= */
+
+.visibility-control[
+  data-visibility-icon="show"
+],
+
+.visibility-control[
+  data-visibility-icon="expand"
+],
+
+.visibility-control[
+  data-visibility-icon="restoreVertical"
+],
+
+.visibility-control[
+  data-visibility-icon="restoreHorizontal"
+] {
+  color: #555;
+}
+
+
+/* =========================================================
+   Размеры отдельных иконок
+========================================================= */
 
 /*
-  Иконки сворачивания из макета
-  имеют исходный размер 11 × 11px.
+  Сворачивание / разворачивание.
 */
 
 .visibility-control[
@@ -144,19 +160,177 @@ body.view-structure-table
   height: 11px;
 }
 
-.visibility-control[data-visibility-icon="hide"] > svg {
+
+/*
+  Глазик.
+*/
+
+.visibility-control[
+  data-visibility-icon="hide"
+] > svg {
   width: 12px;
   height: 12px;
+
   fill: currentColor;
   stroke: none;
 }
 
 
-.visibility-control[data-visibility-icon="restoreVertical"] > svg {
+/*
+  Восстановление скрытого объекта.
+*/
+
+.visibility-control[
+  data-visibility-icon="restoreVertical"
+] > svg {
   width: 11px;
   height: 17px;
+
   fill: currentColor;
   stroke: none;
+}
+
+
+/*
+  Восстановление скрытого уровня.
+*/
+
+.visibility-control[
+  data-visibility-icon="restoreHorizontal"
+] > svg {
+  width: 20px;
+  height: 13px;
+
+  fill: currentColor;
+  stroke: none;
+}
+
+
+/* =========================================================
+   Верхние кнопки управления уровнями
+========================================================= */
+
+#tree
+.level-hide-btn.visibility-control,
+
+#tree
+.level-collapse-btn.visibility-control {
+  display: inline-flex;
+
+  flex: 0 0 20px;
+
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+
+  height: 20px;
+  min-height: 20px;
+
+  margin: 0;
+  padding: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   Единая боковая сетка
+
+   Одинакова для:
+   - Структуры;
+   - Таблицы;
+   - Структуры + Таблица.
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   1. Глазик
+
+   Самая левая колонка.
+--------------------------------------------------------- */
+
+body.view-schema
+#tree
+.object-hide-col:not(.is-hidden-object),
+
+body.view-table
+#tree
+.object-hide-col:not(.is-hidden-object),
+
+body.view-structure-table
+#tree
+.object-hide-col:not(.is-hidden-object) {
+  left:
+    var(
+      --visibility-side-hide-left
+    ) !important;
+}
+
+
+/* ---------------------------------------------------------
+   2. Восстановление скрытого объекта
+
+   Средняя колонка.
+
+   Оставляем положение именно таким,
+   каким оно было в «Структура + Таблица».
+--------------------------------------------------------- */
+
+body.view-schema
+#tree
+.object-hide-col.is-hidden-object,
+
+body.view-table
+#tree
+.object-hide-col.is-hidden-object,
+
+body.view-structure-table
+#tree
+.object-hide-col.is-hidden-object {
+  left:
+    var(
+      --visibility-side-restore-left
+    ) !important;
+}
+
+
+/* ---------------------------------------------------------
+   3. Сворачивание / разворачивание структуры
+--------------------------------------------------------- */
+
+body.view-schema
+#tree
+.collapse-col,
+
+body.view-structure-table
+#tree
+.collapse-col {
+  left:
+    var(
+      --visibility-side-collapse-left
+    ) !important;
+}
+
+
+/* ---------------------------------------------------------
+   4. Сворачивание / разворачивание таблицы
+
+   Теперь стоит ровно там же,
+   где .collapse-col структуры.
+--------------------------------------------------------- */
+
+body.view-table
+#tree
+.table-collapse-col {
+  left:
+    var(
+      --visibility-side-collapse-left
+    ) !important;
 }
 
 
@@ -164,25 +338,34 @@ body.view-structure-table
    Одинаковая сетка верхних кнопок уровней
 ========================================================= */
 
-#tree .level-collapse-bar,
-#tree .level-hide-bar {
+#tree
+.level-collapse-bar,
+
+#tree
+.level-hide-bar {
   display: flex !important;
+
   align-items: center;
 
   gap: 8px !important;
- 
 
   box-sizing: border-box;
 }
 
-#tree .level-collapse-btn.visibility-control,
-#tree .level-hide-btn.visibility-control {
+
+#tree
+.level-collapse-btn.visibility-control,
+
+#tree
+.level-hide-btn.visibility-control {
   display: inline-flex;
 
   flex: 0 0 20px;
+
   width: 20px;
   min-width: 20px;
   max-width: 20px;
+
   height: 20px;
   min-height: 20px;
 
@@ -196,37 +379,40 @@ body.view-structure-table
 }
 
 
-.visibility-control[data-visibility-icon="restoreHorizontal"] > svg {
-  width: 20px;
-  height: 13px;
-  fill: currentColor;
-  stroke: none;
-}
-
-/* Неактивный глазик нулевого уровня */
+/* =========================================================
+   Неактивный глазик нулевого уровня
+========================================================= */
 
 #tree
 .level-hide-btn.visibility-control:disabled {
   color: #c7c7c7 !important;
+
   background: transparent !important;
+
   opacity: 1;
 
   cursor: default;
+
   pointer-events: none;
 }
+
 
 #tree
 .level-hide-btn.visibility-control:disabled
 > svg {
   color: #c7c7c7 !important;
+
   fill: currentColor !important;
+
   stroke: none !important;
 }
+
 
 #tree
 .level-hide-btn.visibility-control:disabled
 > svg path {
   fill: currentColor !important;
+
   stroke: none !important;
 }
 
@@ -235,49 +421,109 @@ body.view-structure-table
    Видимость кнопок по наведению
 ========================================================= */
 
-/* Все кнопки остаются в раскладке, но визуально скрыты */
+/*
+  Кнопки остаются в DOM и в своей
+  позиции, но визуально скрыты.
+*/
 
-#tree .collapse-col,
-#tree .object-hide-col,
-#tree .level-collapse-btn.visibility-control,
-#tree .level-hide-btn.visibility-control {
-  display: inline-flex !important;
+#tree
+.collapse-col,
+
+#tree
+.table-collapse-col,
+
+#tree
+.object-hide-col,
+
+#tree
+.level-collapse-btn.visibility-control,
+
+#tree
+.level-hide-btn.visibility-control {
   visibility: visible !important;
+
   opacity: 0 !important;
 
-  transition: opacity 120ms ease;
+  transition:
+    opacity 120ms ease;
 }
 
-/* Боковые кнопки появляются при наведении на объект */
 
-#tree .collapse-col.is-visible,
-#tree .collapse-col:hover,
-#tree .object-hide-col.is-hover-visible,
-#tree .object-hide-col:hover {
+/* =========================================================
+   Боковые кнопки объекта
+========================================================= */
+
+#tree
+.collapse-col.is-visible,
+
+#tree
+.collapse-col:hover,
+
+#tree
+.table-collapse-col.is-visible,
+
+#tree
+.table-collapse-col:hover,
+
+#tree
+.object-hide-col.is-hover-visible,
+
+#tree
+.object-hide-col:hover {
   opacity: 1 !important;
 }
 
-/* Верхние кнопки появляются при наведении на панель */
 
-#tree .level-collapse-bar:hover
+/* =========================================================
+   Верхние кнопки уровней
+========================================================= */
+
+#tree
+.level-collapse-bar:hover
 .level-collapse-btn.visibility-control,
 
-#tree .level-hide-bar:hover
+#tree
+.level-hide-bar:hover
 .level-hide-btn.visibility-control {
   opacity: 1 !important;
 }
 
-/* Показываем кнопку при управлении с клавиатуры */
 
-#tree .level-collapse-btn.visibility-control:focus-visible,
-#tree .level-hide-btn.visibility-control:focus-visible {
+/* =========================================================
+   Управление с клавиатуры
+========================================================= */
+
+#tree
+.level-collapse-btn.visibility-control:focus-visible,
+
+#tree
+.level-hide-btn.visibility-control:focus-visible {
   opacity: 1 !important;
 }
 
-/* Кнопки восстановления всегда остаются видимыми */
 
-#tree .visibility-control.is-always-visible,
-#tree .collapse-col.is-collapsed,
-#tree .object-hide-col.is-hidden-object {
+/* =========================================================
+   Постоянно видимые кнопки
+========================================================= */
+
+/*
+  Восстановление скрытого объекта
+  или уровня всегда видно.
+
+  Разворачивание уже свёрнутого объекта
+  тоже остаётся видимым.
+*/
+
+#tree
+.visibility-control.is-always-visible,
+
+#tree
+.collapse-col.is-collapsed,
+
+#tree
+.table-collapse-col.is-collapsed,
+
+#tree
+.object-hide-col.is-hidden-object {
   opacity: 1 !important;
 }

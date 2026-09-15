@@ -5,14 +5,18 @@
    css/components/ui_dropdown.css.
    ========================================================= */
 
-.property-context-menu {
+.ui-dropdown-menu.property-context-menu {
   position: fixed;
 
   z-index: 13000;
 
   display: none;
 
-  min-width: 190px;
+  width: max-content;
+  min-width: 0;
+
+  max-width:
+    calc(100vw - 16px);
 }
 
 .property-context-menu.is-open {

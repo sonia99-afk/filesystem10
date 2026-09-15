@@ -547,12 +547,30 @@ li
     }
 
     function visibleTopForLi(li) {
-      const row = directRowOfLi(li);
-      if (!row || !row.getClientRects().length) return null;
+  const row =
+    directRowOfLi(li);
 
-      const box = row.getBoundingClientRect();
-      return Math.round(box.top - hostBox.top);
-    }
+  if (
+    !row ||
+    !row.getClientRects().length
+  ) {
+    return null;
+  }
+
+  const box =
+    row.getBoundingClientRect();
+
+  const controlHeight = 20;
+
+  return Math.round(
+    box.top -
+    hostBox.top +
+    (
+      box.height -
+      controlHeight
+    ) / 2
+  );
+}
 
     const sequence = [];
 
@@ -720,7 +738,14 @@ const hidden = hiddenIds.has(id);
       sequence.push({
         id,
         hidden: false,
-        top: Math.round(trBox.top - hostBox.top),
+        top: Math.round(
+  trBox.top -
+  hostBox.top +
+  (
+    trBox.height -
+    20
+  ) / 2
+),
       });
     });
 
@@ -967,9 +992,7 @@ if (isTableView()) {
         display: none !important;
       }
 
-      #tree .object-hide-table-col {
-        left: -30px;
-      }
+      
 
       .table-collapse-col {
       color: #6b7280;

@@ -205,7 +205,7 @@
     line.style.top =
   `${Math.round(
     Math.min(startY, endY)
-  ) + 1}px`;
+  ) }px`;
 
     line.style.height =
       `${Math.max(
@@ -256,7 +256,7 @@
       )}px`;
 
     line.style.top =
-  `${Math.round(y) + 1}px`;
+  `${Math.round(y)}px`;
 
     line.style.width =
       `${Math.max(

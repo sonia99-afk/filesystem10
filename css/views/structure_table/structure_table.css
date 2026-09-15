@@ -172,7 +172,7 @@ body.view-structure-table
 .structure-table-schema-pane
 > .level-collapse-bar {
   position: absolute;
-  top: -52px;
+  top: -32px;
   left: 0;
 
   width: max-content;
@@ -185,7 +185,7 @@ body.view-structure-table
 .structure-table-schema-pane
 > .level-hide-bar {
   position: absolute;
-  top: -32px;
+  top: -52px;
   left: 0;
 
   width: max-content;

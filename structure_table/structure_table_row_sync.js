@@ -1065,18 +1065,28 @@ if (
           row.getClientRects().length
         ) {
           const rowBox =
-            row.getBoundingClientRect();
+  row.getBoundingClientRect();
 
-          return {
-            control,
-            isSideControl,
+const controlBox =
+  control.getBoundingClientRect();
 
-            top:
-              Math.round(
-                rowBox.top -
-                paneBox.top
-              ),
-          };
+const controlHeight =
+  controlBox.height || 20;
+
+return {
+  control,
+  isSideControl,
+
+  top:
+    Math.round(
+      rowBox.top -
+      paneBox.top +
+      (
+        rowBox.height -
+        controlHeight
+      ) / 2
+    ),
+};
         }
 
         const oldTop =

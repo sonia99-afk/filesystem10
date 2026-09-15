@@ -6,30 +6,24 @@
   position: relative;
 }
 
-#tree .table-collapse-col {
+#tree
+.table-collapse-col.visibility-control {
   position: absolute;
-  left: -48px;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  background: transparent;
-  color: #6b7280;
-  font: inherit;
-   transform: translateY(3px);
-  text-align: right;
-  user-select: none;
-  cursor: pointer;
+
   z-index: 30;
+
+  margin: 0;
+  padding: 0;
   opacity: 0;
-  font-size: 12px;
 }
 
-#tree .table-collapse-col:hover {
-  color: black;
-}
-
-#tree .table-collapse-col.is-visible,
-#tree .table-collapse-col:hover,
-#tree .table-collapse-col.is-collapsed {
+#tree
+.table-collapse-col.visibility-control.is-visible,
+#tree
+.table-collapse-col.visibility-control:hover,
+#tree
+.table-collapse-col.visibility-control.is-collapsed,
+#tree
+.table-collapse-col.visibility-control.is-always-visible {
   opacity: 1;
 }

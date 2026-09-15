@@ -14,21 +14,22 @@ display: none !important;
 .table-column-width-modal {
 display: flex;
 flex-direction: column;
-width: min(390px, calc(100vw - 32px));
-height: auto !important;
+width: 400px;
+height: 189px;
     border: 1px solid #d0d0d0;
     border-radius: 6px;
 
-padding: 18px;
+padding: 20px;
 box-sizing: border-box;
 overflow: visible;
+font-size: 14px;
 }
 
 /* Заголовок */
 
 .table-column-width-title {
-margin: 0 0 14px;
-font-size: 16px;
+margin: 0 0 20px;
+font-size: 14px;
 font-weight: 700;
 }
 
@@ -38,9 +39,9 @@ font-weight: 700;
 display: flex;
 flex: 0 0 auto;
 flex-direction: column;
-gap: 10px;
+gap: 8px;
 margin: 0 0 18px;
-font-size: 13px;
+font-size: 14px;
 
 }
 
@@ -53,20 +54,27 @@ gap: 4px;
 .table-column-width-option {
 display: flex;
 align-items: center;
-gap: 12px;
+gap: 5px;
 cursor: pointer;
 }
 
-/* Круги */
+/* =========================================================
+   Единый размер текста окна изменения ширины
+========================================================= */
+
+.table-column-width-modal,
+.table-column-width-modal * {
+  font-size: 13px !important;
+}
 
 
 /* Поле ввода */
 
 .table-column-width-input {
 display: block;
-width: calc(100% - 26px);
+width: 337px;
 height: 22px;
-margin: 4px 0 0 26px;
+margin: 4px 0 0 22px;
 padding: 2px 7px;
 box-sizing: border-box;
 border: 1px solid #757575;
@@ -117,7 +125,7 @@ font-size: 14px;
 .table-column-width-modal .property-delete-actions {
 display: flex;
 justify-content: flex-end;
-gap: 20px;
+gap: 12px;
 margin-top: 0;
 }
 
@@ -157,6 +165,7 @@ overflow: hidden;
 opacity: 0;
 clip-path: inset(50%);
 pointer-events: none;
+font-size: 14px;
 }
 
 .table-column-width-native-radio:focus-visible

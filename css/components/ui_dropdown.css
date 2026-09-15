@@ -15,7 +15,7 @@
 ========================================================= */
 
 :root {
-  --ui-dropdown-font-size: 16px;
+  --ui-dropdown-font-size: 12px;
   --ui-dropdown-title-font-size: 12px;
 
   --ui-dropdown-bg: #fff;
@@ -30,8 +30,8 @@
     0 12px 30px
     rgba(0, 0, 0, 0.10);
 
-  --ui-dropdown-item-min-height: 34px;
-  --ui-dropdown-item-padding-y: 8px;
+  --ui-dropdown-item-min-height: 28px;
+  --ui-dropdown-item-padding-y: 4px;
   --ui-dropdown-item-padding-x: 10px;
   --ui-dropdown-item-gap: 8px;
   --ui-dropdown-item-radius: 3px;
@@ -244,7 +244,7 @@
 
 .ui-dropdown-label {
   display: block;
-
+  
   flex: 1 1 auto;
   min-width: 0;
 

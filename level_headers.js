@@ -1348,6 +1348,8 @@ function syncTableLevelRowHeights() {
       layoutColumnCascadeLines();
     }
   );
+
+  syncSideControls();
 }
 
 function scheduleTableLevelRowSync() {
@@ -1474,9 +1476,61 @@ layout.className = "table-with-level-headers level-headers-table-mounted";
 );
   }
 
+  function syncSideControls() {
+  requestAnimationFrame(
+    () => {
+      const host =
+        document.getElementById(
+          "tree"
+        );
+
+      if (!host) {
+        return;
+      }
+
+      /*
+        Табличные кнопки
+        сворачивания.
+      */
+
+      if (
+        typeof VIEW !==
+          "undefined" &&
+        currentView ===
+          VIEW.TABLE
+      ) {
+        const wrap =
+          host.querySelector(
+            ".table-view"
+          );
+
+        if (wrap) {
+          window
+            .tableCollapseColumn
+            ?.layout?.(
+              host,
+              wrap
+            );
+        }
+      }
+
+      /*
+        Глазики скрытия.
+        refresh заново получает
+        настоящие координаты строк.
+      */
+
+      window.hideNodes
+        ?.refresh?.();
+    }
+  );
+}
+
   function mountForCurrentView() {
-    mountTableHeaders();
-  }
+  mountTableHeaders();
+
+  syncSideControls();
+}
 
   function layoutColumnCascadeLines() {
     const rootCol = document.querySelector(".level-headers-column-cascade");

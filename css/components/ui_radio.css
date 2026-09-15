@@ -1,0 +1,261 @@
+/* =========================================================
+   Единый компонент круглого выбора
+
+   Используется:
+   - в выпадающих меню;
+   - в настройках интерфейса;
+   - в модальных окнах;
+   - в настройках заголовков уровней;
+   - в свойстве «Метка».
+========================================================= */
+
+:root {
+  --ui-radio-size: 18px;
+
+  --ui-radio-empty:
+    url("../../icons/radio-off.svg");
+
+  --ui-radio-selected:
+    url("../../icons/radio-on.svg");
+}
+
+
+/* =========================================================
+   Базовый внешний вид
+========================================================= */
+
+.view-settings-interface-radio,
+.ui-dropdown-radio,
+.level-headers-settings-radio,
+.level-headers-settings-icon,
+.mark-dot {
+  position: relative;
+
+  display: inline-block;
+
+  flex:
+    0 0
+    var(--ui-radio-size);
+
+  width:
+    var(--ui-radio-size);
+
+  min-width:
+    var(--ui-radio-size);
+
+  max-width:
+    var(--ui-radio-size);
+
+  height:
+    var(--ui-radio-size);
+
+  min-height:
+    var(--ui-radio-size);
+
+  max-height:
+    var(--ui-radio-size);
+
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  background-color:
+    transparent !important;
+
+  background-image:
+    var(--ui-radio-empty) !important;
+
+  background-repeat:
+    no-repeat !important;
+
+  background-position:
+    center !important;
+
+  background-size:
+    var(--ui-radio-size)
+    var(--ui-radio-size) !important;
+
+  vertical-align: middle;
+}
+
+
+/* =========================================================
+   Выбранное состояние
+========================================================= */
+
+/*
+  Настройки интерфейса.
+
+  Используется, например:
+  - изменение ширины колонки;
+  - изменение ширины линии уровня.
+*/
+
+.view-settings-interface-radio.is-selected {
+  background-image:
+    var(--ui-radio-selected) !important;
+}
+
+
+/*
+  Обычные ui-dropdown.
+*/
+
+.ui-dropdown-item[
+  aria-checked="true"
+]
+.ui-dropdown-radio {
+  background-image:
+    var(--ui-radio-selected) !important;
+}
+
+
+/*
+  Заголовки уровней.
+
+  Поддерживаем обе реализации:
+  - .level-headers-settings-radio;
+  - старую .level-headers-settings-icon.
+*/
+
+.level-headers-settings-item.is-active
+.level-headers-settings-radio,
+
+.level-headers-settings-item.is-active
+.level-headers-settings-icon {
+  background-image:
+    var(--ui-radio-selected) !important;
+}
+
+
+/*
+  Свойство «Метка».
+*/
+
+.mark-dot.is-marked {
+  background-image:
+    var(--ui-radio-selected) !important;
+}
+
+
+/* =========================================================
+   Убираем старние CSS-кружки и точки
+
+   Они больше не нужны,
+   потому что всё нарисовано в SVG.
+========================================================= */
+
+.view-settings-interface-radio::before,
+.view-settings-interface-radio::after,
+
+.ui-dropdown-radio::before,
+.ui-dropdown-radio::after,
+
+.level-headers-settings-radio::before,
+.level-headers-settings-radio::after,
+
+.level-headers-settings-icon::before,
+.level-headers-settings-icon::after {
+  content: none !important;
+
+  display: none !important;
+}
+
+
+/* =========================================================
+   Метка объекта
+========================================================= */
+
+.mark-dot {
+  cursor: pointer;
+}
+
+
+/*
+  В mark-property.css выбранная метка раньше
+  рисовалась radial-gradient.
+
+  background-image с !important выше
+  заменяет этот старый вариант.
+*/
+
+.mark-dot.is-marked {
+  background-color:
+    transparent !important;
+}
+
+
+/* =========================================================
+   Отступы Метки в разных отображениях
+
+   Оставляем существующую геометрию,
+   меняется только сама картинка.
+========================================================= */
+
+.hierarchy-node
+.mark-dot,
+
+.hierarchy-horizontal-node
+.mark-dot,
+
+.icicle-horizontal-node
+.mark-dot,
+
+.icicle-vertical-node
+.mark-dot,
+
+.leaf-node
+.mark-dot {
+  margin-right: 6px;
+}
+
+
+.structure-table
+.mark-dot {
+  margin-left: 2px;
+}
+
+
+/* =========================================================
+   Фокус нативных radio
+
+   Нативный input скрыт,
+   но при управлении клавиатурой
+   фокус показываем на SVG-индикаторе.
+========================================================= */
+
+.table-column-width-native-radio:focus-visible
++
+.table-column-width-radio,
+
+.level-indent-native-radio:focus-visible
++
+.view-settings-interface-radio {
+  outline:
+    1px solid #777;
+
+  outline-offset:
+    2px;
+}
+
+
+/* =========================================================
+   Неактивное состояние
+========================================================= */
+
+.ui-dropdown-item:disabled
+.ui-dropdown-radio,
+
+.ui-dropdown-item[
+  aria-disabled="true"
+]
+.ui-dropdown-radio,
+
+.level-headers-settings-item:disabled
+.level-headers-settings-icon {
+  opacity: 0.45;
+}

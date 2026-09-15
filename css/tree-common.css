@@ -118,7 +118,7 @@ width:
   .anchor {
     position: absolute;
   
-    top: calc(0.9em - 4px);
+    top: 10px;
   
     left: 0;
   
