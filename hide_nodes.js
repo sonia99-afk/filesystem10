@@ -936,7 +936,7 @@ if (isTableView()) {
     style.textContent = `
       #tree .object-hide-col {
   position: absolute;
-  left: -30px;
+  
   padding: 0;
   margin: 0;
   border: 0;

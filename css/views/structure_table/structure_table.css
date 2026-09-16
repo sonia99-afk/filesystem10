@@ -151,10 +151,7 @@ body.view-structure-table
   content: none;
 }
 
-body.view-structure-table
-#tree .collapse-col {
-  left: -55px;
-}
+
 
 body.view-structure-table
 #tree .level-collapse-bar {
@@ -380,37 +377,6 @@ tbody > tr.structure-table-active-row
   padding-left: 64px;
 }
 
-/*
-  Сворачивание — первая позиция.
-*/
-body.view-structure-table
-#tree
-.structure-table-schema-pane
-> .collapse-col {
-  left: 40px !important;
-}
-
-/*
-  Обычная кнопка скрытия —
-  вторая позиция.
-*/
-body.view-structure-table
-#tree
-.structure-table-schema-pane
-> .object-hide-col:not(.is-hidden-object) {
-  left: 20px !important;
-}
-
-/*
-  Кнопка скрытого объекта —
-  третья позиция.
-*/
-body.view-structure-table
-#tree
-.structure-table-schema-pane
-> .object-hide-col.is-hidden-object {
-  left: 30px !important;
-}
 
 /*
   Верхние панели располагаются выше
@@ -423,7 +389,7 @@ body.view-structure-table
 > .level-collapse-bar {
   top:
     calc(
-      -52px -
+      -32px -
       var(
         --structure-table-top-headers-height,
         0px
@@ -438,7 +404,7 @@ body.view-structure-table
 > .level-hide-bar {
   top:
     calc(
-      -32px -
+      -52px -
       var(
         --structure-table-top-headers-height,
         0px
